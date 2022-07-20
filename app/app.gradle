@@ -1,0 +1,10 @@
+
+dependencies {
+    implementation project(':system')
+    implementation project(':demo')
+    implementation project(':config')
+}
+
+test {
+    useJUnitPlatform()
+}

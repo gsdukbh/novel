@@ -1,0 +1,15 @@
+
+dependencies {
+    implementation project(':common')
+    implementation project(':demo-api')
+}
+
+test {
+    useJUnitPlatform()
+}
+bootJar{
+    enabled = false
+}
+jar {
+    enabled=true
+}
