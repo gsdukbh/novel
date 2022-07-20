@@ -1,11 +1,15 @@
-# Spring boot template
+# novel 
 
 
 
 ## 关于
 
-`Springboot template` 是一个模版项目,在`Springboot` 的基础上 集成 `spring secutiry` 、 `JWT`、 `i18n`、`Springdoc` 等功能.
+`novel` 是一个小说阅读工具
 
+## 程序主要流程
+
+
+[项目uml](doc/项目uml.mdj) startUML 项目文件
 
 ## 如何构建你的证书
 
