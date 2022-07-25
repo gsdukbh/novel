@@ -9,7 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Flowchart1",
+			"name": "主要流程",
 			"ownedElements": [
 				{
 					"_type": "FCFlowchartDiagram",
@@ -1548,6 +1548,279 @@
 						"$ref": "AAAAAAGCG162uh0yc9c="
 					},
 					"name": "结束"
+				}
+			]
+		},
+		{
+			"_type": "ERDDataModel",
+			"_id": "AAAAAAGCIQHkgCRpup0=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "实体关系图",
+			"ownedElements": [
+				{
+					"_type": "ERDDiagram",
+					"_id": "AAAAAAGCIQHkgCRqKdE=",
+					"_parent": {
+						"$ref": "AAAAAAGCIQHkgCRpup0="
+					},
+					"name": "ERDDiagram1",
+					"ownedViews": [
+						{
+							"_type": "ERDEntityView",
+							"_id": "AAAAAAGCIQJJiSRy8rg=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQHkgCRqKdE="
+							},
+							"model": {
+								"$ref": "AAAAAAGCIQJJiSRwaq8="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGCIQJJiSRz3ZQ=",
+									"_parent": {
+										"$ref": "AAAAAAGCIQJJiSRy8rg="
+									},
+									"font": "Arial;13;1",
+									"left": 32,
+									"top": 157,
+									"width": 167.7060546875,
+									"height": 13,
+									"text": "book"
+								},
+								{
+									"_type": "ERDColumnCompartmentView",
+									"_id": "AAAAAAGCIQJJiSR049w=",
+									"_parent": {
+										"$ref": "AAAAAAGCIQJJiSRy8rg="
+									},
+									"model": {
+										"$ref": "AAAAAAGCIQJJiSRwaq8="
+									},
+									"subViews": [
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGCIQOazSSEYIQ=",
+											"_parent": {
+												"$ref": "AAAAAAGCIQJJiSR049w="
+											},
+											"model": {
+												"$ref": "AAAAAAGCIQOayCSBvVA="
+											},
+											"font": "Arial;13;0",
+											"left": 37,
+											"top": 180,
+											"width": 157.7060546875,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGCIQPQFiSKnzg=",
+											"_parent": {
+												"$ref": "AAAAAAGCIQJJiSR049w="
+											},
+											"model": {
+												"$ref": "AAAAAAGCIQPQFCSHf+M="
+											},
+											"font": "Arial;13;0",
+											"left": 37,
+											"top": 195,
+											"width": 157.7060546875,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGCL5gBhx4ANKI=",
+											"_parent": {
+												"$ref": "AAAAAAGCIQJJiSR049w="
+											},
+											"model": {
+												"$ref": "AAAAAAGCL5gBgR39LF0="
+											},
+											"font": "Arial;13;0",
+											"left": 37,
+											"top": 210,
+											"width": 157.7060546875,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGCL5iqQx4JZhs=",
+											"_parent": {
+												"$ref": "AAAAAAGCIQJJiSR049w="
+											},
+											"model": {
+												"$ref": "AAAAAAGCL5iqPx4GVho="
+											},
+											"font": "Arial;13;0",
+											"left": 37,
+											"top": 225,
+											"width": 157.7060546875,
+											"height": 13
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 32,
+									"top": 175,
+									"width": 167.7060546875,
+									"height": 68
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 32,
+							"top": 152,
+							"width": 167.7060546875,
+							"height": 91,
+							"nameLabel": {
+								"$ref": "AAAAAAGCIQJJiSRz3ZQ="
+							},
+							"columnCompartment": {
+								"$ref": "AAAAAAGCIQJJiSR049w="
+							}
+						},
+						{
+							"_type": "ERDEntityView",
+							"_id": "AAAAAAGCIQdAgcuevUM=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQHkgCRqKdE="
+							},
+							"model": {
+								"$ref": "AAAAAAGCIQdAgcucifo="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGCIQdAgcufNcY=",
+									"_parent": {
+										"$ref": "AAAAAAGCIQdAgcuevUM="
+									},
+									"font": "Arial;13;1",
+									"left": 48,
+									"top": 285,
+									"width": 128.21728515625,
+									"height": 13,
+									"text": "sysUser"
+								},
+								{
+									"_type": "ERDColumnCompartmentView",
+									"_id": "AAAAAAGCIQdAgcugFY0=",
+									"_parent": {
+										"$ref": "AAAAAAGCIQdAgcuevUM="
+									},
+									"model": {
+										"$ref": "AAAAAAGCIQdAgcucifo="
+									},
+									"subViews": [
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGCIQePQMuuaAQ=",
+											"_parent": {
+												"$ref": "AAAAAAGCIQdAgcugFY0="
+											},
+											"model": {
+												"$ref": "AAAAAAGCIQePOcurzkM="
+											},
+											"font": "Arial;13;0",
+											"left": 53,
+											"top": 308,
+											"width": 118.21728515625,
+											"height": 13
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 48,
+									"top": 303,
+									"width": 128.21728515625,
+									"height": 23
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 48,
+							"top": 280,
+							"width": 128.21728515625,
+							"height": 46,
+							"nameLabel": {
+								"$ref": "AAAAAAGCIQdAgcufNcY="
+							},
+							"columnCompartment": {
+								"$ref": "AAAAAAGCIQdAgcugFY0="
+							}
+						}
+					]
+				},
+				{
+					"_type": "ERDEntity",
+					"_id": "AAAAAAGCIQJJiSRwaq8=",
+					"_parent": {
+						"$ref": "AAAAAAGCIQHkgCRpup0="
+					},
+					"name": "book",
+					"documentation": "图书",
+					"columns": [
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGCIQOayCSBvVA=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQJJiSRwaq8="
+							},
+							"name": "id",
+							"documentation": "id",
+							"type": "INTEGER",
+							"primaryKey": true
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGCIQPQFCSHf+M=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQJJiSRwaq8="
+							},
+							"name": "name",
+							"documentation": "书名",
+							"type": "VARCHAR"
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGCL5gBgR39LF0=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQJJiSRwaq8="
+							},
+							"name": "author",
+							"type": "VARCHAR",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGCL5iqPx4GVho=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQJJiSRwaq8="
+							},
+							"name": "Column1"
+						}
+					]
+				},
+				{
+					"_type": "ERDEntity",
+					"_id": "AAAAAAGCIQdAgcucifo=",
+					"_parent": {
+						"$ref": "AAAAAAGCIQHkgCRpup0="
+					},
+					"name": "sysUser",
+					"documentation": "系统用户",
+					"columns": [
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGCIQePOcurzkM=",
+							"_parent": {
+								"$ref": "AAAAAAGCIQdAgcucifo="
+							},
+							"name": "uid",
+							"type": "INTEGER",
+							"length": 0,
+							"primaryKey": true
+						}
+					]
 				}
 			]
 		}

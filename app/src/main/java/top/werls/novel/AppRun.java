@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Slf4j
-public class SpringBootTemplateApplication {
+public class AppRun {
 
     public static void main(String[] args) {
-        var context = SpringApplication.run(SpringBootTemplateApplication.class, args);
+        var context = SpringApplication.run(AppRun.class, args);
         var env = context.getEnvironment();
         var applicationName = env.getProperty("env.appName");
         var version = env.getProperty("env.version");
@@ -26,7 +26,7 @@ public class SpringBootTemplateApplication {
                 | swagger-ui: http://localhost:{}/swagger-ui.html
                 | application web: http://localhost:{}/
                 | database: {}
-                |=========================================================== 
+                |===========================================================
                    
                 """, applicationName, version, port, port, databaseUrl);
     }

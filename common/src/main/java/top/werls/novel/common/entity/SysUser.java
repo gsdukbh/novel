@@ -1,14 +1,16 @@
-package top.werls.novel.system.entity;
+package top.werls.novel.common.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Schema(description = "用户实体类")
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private Long uid;

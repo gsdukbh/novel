@@ -14,5 +14,4 @@ public interface SysUserService {
      * @return
      */
     LoginVo login(LoginParam param);
-
 }
