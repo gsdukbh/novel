@@ -24,7 +24,11 @@ class AppRunTest {
   @Timeout(20)
   void contextLoads() throws IOException {
     Document doc =
-        Jsoup.connect("https://www.bing.com/search").userAgent(chrome).data("q", "圣墟小说").get();
+        Jsoup.connect("https://www.bing.com/search")
+            .userAgent(chrome)
+            .data("q", "圣墟小说")
+            .data("first", "1")// min 1
+            .get();
     // 搜索结果
     Element content = doc.body().getElementById("b_content");
     //    System.out.println(content); #b_results > li:nth-child(3) > h2 > a
@@ -37,8 +41,6 @@ class AppRunTest {
           // name
           System.out.println(i.select("h2 > a").first().text());
         });
-
-    System.out.println(list.first().select("h2 > a"));
   }
 
   @Test()
@@ -48,6 +50,7 @@ class AppRunTest {
             .userAgent(iphone12)
             .data("word", "圣墟")
             .data("tn", "baidu")
+            .data("pn", "0")// min 0
             .get();
     Element content = doc.body().getElementById("content_left");
     Elements list = content.getElementsByClass("c-container");
@@ -81,13 +84,26 @@ class AppRunTest {
         Jsoup.connect("https://www.google.com/search")
             .userAgent(chrome)
             .data("q", "圣墟")
-            .data("start", "0")
+            .data("start", "0")//min 0
             .get();
     Element search = doc.getElementById("search");
     var list = search.getElementsByClass("jtfYYd");
     list.forEach(
         i -> {
-            //url
+          // url
+          var ca = i.getElementsByClass("yuRUbf").first();
+          var url = ca.select("a").first().attr("href");
+          var tem = i.getElementsByClass("MUxGbd").first();
+          // name
+          var name = tem.selectFirst("em").text();
+          var description = tem.getElementsByTag("span");
+          System.out.println(name);
+
+          StringBuilder tems = new StringBuilder();
+          for (var thr : description) {
+            tems.append(thr.text());
+          }
+          System.out.println(tems);
           System.out.println("-------------------------------");
         });
   }
