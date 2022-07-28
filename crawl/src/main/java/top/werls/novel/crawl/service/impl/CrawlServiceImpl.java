@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.crawl.service.CrawlService;
 import top.werls.novel.crawl.vo.SearchVO;
 
@@ -49,13 +50,22 @@ public class CrawlServiceImpl implements CrawlService {
             .get();
     List<SearchVO> res = new LinkedList<>();
     // bing
-    // 搜索结果
     res.addAll(bingList(bing));
+    // baidu
     res.addAll(baiduList(baidu));
+    // google
+    res.addAll(googleSearch(google));
+    // duckduckgo
 
-    return null;
+    return res;
   }
 
+  /**
+   * 从bing.com 搜索数据
+   *
+   * @param bing
+   * @return
+   */
   private List<SearchVO> bingList(Document bing) {
     List<SearchVO> res = new LinkedList<>();
     // 搜索结果
@@ -69,8 +79,9 @@ public class CrawlServiceImpl implements CrawlService {
             if (e != null) {
               var url = e.attr("href");
               var name = e.text();
-              tem.setName(name);
+              tem.setTitle(name);
               tem.setUrl(url);
+              tem.setSite(NetUtils.getDomainUrl(url));
               res.add(tem);
             }
           });
@@ -88,15 +99,50 @@ public class CrawlServiceImpl implements CrawlService {
             SearchVO tem = new SearchVO();
             var url = i.attr("mu");
             tem.setUrl(url);
+            tem.setSite(NetUtils.getDomainUrl(url));
             var info = i.select("div > div:nth-child(1) > h3 > a ").first();
             if (info != null) {
-              tem.setName(info.text());
+              tem.setTitle(info.text());
               var d = info.select("em").text();
               tem.setDescription(d);
               res.add(tem);
             }
           });
     }
+    return res;
+  }
+
+  private List<SearchVO> googleSearch(Document google) {
+    List<SearchVO> res = new LinkedList<>();
+    Element search = google.getElementById("search");
+
+    if (search != null) {
+      var list = search.getElementsByClass("jtfYYd");
+      list.forEach(
+          i -> {
+            SearchVO temp = new SearchVO();
+            var ca = i.getElementsByClass("yuRUbf").first();
+            if (ca != null) {
+              var url = ca.select("a").first().attr("href");
+              temp.setUrl(url);
+              temp.setSite(NetUtils.getDomainUrl(url));
+            }
+            var info = i.getElementsByClass("MUxGbd").first();
+
+            if (info != null) {
+              var name = info.selectFirst("em").text();
+              temp.setTitle(name);
+              var description = info.getElementsByTag("span");
+              StringBuilder descriptions = new StringBuilder();
+              for (var thr : description) {
+                descriptions.append(thr.text());
+              }
+              temp.setDescription(descriptions.toString());
+            }
+            res.add(temp);
+          });
+    }
+
     return res;
   }
 }

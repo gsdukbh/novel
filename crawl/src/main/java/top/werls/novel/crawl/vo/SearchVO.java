@@ -18,7 +18,8 @@ public class SearchVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private  String url;
-    private  String name ;
+    private  String title;
     private  String description;
     private boolean encoded;
+    private  String site;
 }

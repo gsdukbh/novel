@@ -12,6 +12,7 @@ import top.werls.novel.crawl.vo.SearchVO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * date created 2022/7/27
@@ -27,6 +28,7 @@ class CrawlServiceTest {
       "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1";
 
   @Test
+  @Timeout(value = 3)
   void getSearch() throws IOException {
     CrawlService a = new CrawlServiceImpl();
     String proxyHost = "127.0.0.1";
@@ -37,11 +39,12 @@ class CrawlServiceTest {
     // 对https也开启代理
     System.setProperty("https.proxyHost", proxyHost);
     System.setProperty("https.proxyPort", proxyPort);
-    a.getSearch(chrome, "圣墟", 1);
+    var setProperty = a.getSearch(chrome, "圣墟", 1);
+    System.out.println(setProperty);
   }
 
   @Test()
-  @Timeout(20)
+  @Timeout(value = 2, unit = TimeUnit.SECONDS)
   void contextLoads() throws IOException {
     Document doc =
         Jsoup.connect("https://www.bing.com/search")
@@ -64,7 +67,7 @@ class CrawlServiceTest {
           //                    System.out.println(url);
           // name
           var name = i.select("h2 > a").first().text();
-          tem.setName(name);
+          tem.setTitle(name);
           tem.setEncoded(url.contains("baidu"));
           res.add(tem);
           //                    System.out.println(i.select("h2 > a").first().text());
@@ -125,8 +128,9 @@ class CrawlServiceTest {
           var tem = i.getElementsByClass("MUxGbd").first();
           // name
           var name = tem.selectFirst("em").text();
-          var description = tem.getElementsByTag("span");
+
           System.out.println(name);
+          var description = tem.getElementsByTag("span");
 
           StringBuilder tems = new StringBuilder();
           for (var thr : description) {
@@ -140,10 +144,35 @@ class CrawlServiceTest {
   @Test
   void duckduckgo() {
     // https://duckduckgo.com/?q=
+
   }
 
   @Test
-  void so() {
+  void so() throws IOException {
     // https://www.so.com/s
+    Document so =
+        Jsoup.connect("https://www.so.com/s")
+            .userAgent(chrome)
+            .data("q", "圣墟")
+            .data("pn", "1")
+            .data("src", "home-sug-store")
+            .get();
+    Element main = so.getElementById("main");
+    if (main != null) {
+      var resList = main.getElementsByClass("res-list");
+      resList.forEach(
+          item -> {
+            // url #main > ul > li:nth-child(1) > h3 > a
+            var urlElement = item.select("h3 > a").first();
+            if (urlElement != null) {
+              var url = urlElement.attr("data-mdurl");
+              if (!url.contains("360")) {
+                System.out.println(url);
+              }
+            }
+          });
+    }
   }
+
+  // 获取域名正则 http(s)?://(([\w-]+\.)+\w+(:\d{1,5})?)
 }
