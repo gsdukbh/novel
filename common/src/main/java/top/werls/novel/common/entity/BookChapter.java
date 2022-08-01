@@ -18,6 +18,9 @@ public class BookChapter extends BaseEntity implements Serializable  {
 
   @Serial private static final long serialVersionUID = 1L;
   private long id;
+  /**
+   * 图书id
+   */
   private long bid;
   private String name;
   private String content;

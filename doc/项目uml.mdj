@@ -36,8 +36,8 @@
 										"$ref": "AAAAAAGCG2OUix08ooM="
 									},
 									"font": "Arial;13;0",
-									"left": 426,
-									"top": 66,
+									"left": 418,
+									"top": 58,
 									"width": 74.74365234375,
 									"height": 13,
 									"text": "开始",
@@ -45,8 +45,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 416,
-							"top": 56,
+							"left": 408,
+							"top": 48,
 							"width": 94.74365234375,
 							"height": 33,
 							"nameLabel": {
@@ -109,7 +109,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 493,
-									"top": 105,
+									"top": 101,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -127,7 +127,7 @@
 								"$ref": "AAAAAAGCG2OUix08ooM="
 							},
 							"lineStyle": 2,
-							"points": "479:88;479:136",
+							"points": "479:80;479:136",
 							"nameLabel": {
 								"$ref": "AAAAAAGCG2bbfB2P6tI="
 							}
@@ -1586,7 +1586,7 @@
 									"font": "Arial;13;1",
 									"left": 32,
 									"top": 157,
-									"width": 167.7060546875,
+									"width": 171.86376953125,
 									"height": 13,
 									"text": "book"
 								},
@@ -1612,7 +1612,7 @@
 											"font": "Arial;13;0",
 											"left": 37,
 											"top": 180,
-											"width": 157.7060546875,
+											"width": 161.86376953125,
 											"height": 13
 										},
 										{
@@ -1627,7 +1627,7 @@
 											"font": "Arial;13;0",
 											"left": 37,
 											"top": 195,
-											"width": 157.7060546875,
+											"width": 161.86376953125,
 											"height": 13
 										},
 										{
@@ -1642,7 +1642,7 @@
 											"font": "Arial;13;0",
 											"left": 37,
 											"top": 210,
-											"width": 157.7060546875,
+											"width": 161.86376953125,
 											"height": 13
 										},
 										{
@@ -1657,21 +1657,21 @@
 											"font": "Arial;13;0",
 											"left": 37,
 											"top": 225,
-											"width": 157.7060546875,
+											"width": 161.86376953125,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 32,
 									"top": 175,
-									"width": 167.7060546875,
+									"width": 171.86376953125,
 									"height": 68
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 32,
 							"top": 152,
-							"width": 167.7060546875,
+							"width": 171.86376953125,
 							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAGCIQJJiSRz3ZQ="
@@ -1821,6 +1821,25 @@
 							"primaryKey": true
 						}
 					]
+				}
+			]
+		},
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAGCWeTrQJzBNa0=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model1",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAGCWeTrQZzCMv8=",
+					"_parent": {
+						"$ref": "AAAAAAGCWeTrQJzBNa0="
+					},
+					"name": "ICrawl",
+					"documentation": "ICrawl 类图 ，\n爬虫适配接口，网站解析实现的接口。"
 				}
 			]
 		}

@@ -1,5 +1,7 @@
 package top.werls.novel.crawl.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -39,7 +41,7 @@ class CrawlServiceTest {
     // 对https也开启代理
     System.setProperty("https.proxyHost", proxyHost);
     System.setProperty("https.proxyPort", proxyPort);
-    var setProperty = a.getSearch(chrome, "圣墟", 1);
+    var setProperty = a.getSearch( "圣墟", 1);
     System.out.println(setProperty);
   }
 

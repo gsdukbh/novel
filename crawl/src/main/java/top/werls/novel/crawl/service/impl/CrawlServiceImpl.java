@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.crawl.service.CrawlService;
+import top.werls.novel.crawl.vo.BookChapterVo;
 import top.werls.novel.crawl.vo.SearchVO;
 
 import java.io.IOException;
@@ -26,25 +27,25 @@ import java.util.List;
 public class CrawlServiceImpl implements CrawlService {
 
   @Override
-  public List<SearchVO> getSearch(String ua, String data, int page) throws IOException {
+  public List<SearchVO> getSearch( String data, int page) throws IOException {
 
     page = (page - 1) * 10;
     Document bing =
         Jsoup.connect(this.bing)
-            .userAgent(ua)
+            .userAgent(this.chrome)
             .data("q", data)
             .data("first", Integer.toString(page))
             .get();
     Document baidu =
         Jsoup.connect(this.baidu)
-            .userAgent(ua)
+            .userAgent(chrome)
             .data("word", data)
             .data("tn", "baidu")
             .data("pn", Integer.toString(page))
             .get();
     Document google =
         Jsoup.connect(this.google)
-            .userAgent(ua)
+            .userAgent(chrome)
             .data("q", data)
             .data("start", Integer.toString(page))
             .get();
@@ -60,7 +61,12 @@ public class CrawlServiceImpl implements CrawlService {
     return res;
   }
 
-  /**
+    @Override
+    public BookChapterVo getBookInfo(String bookName, String url) throws IOException {
+        return null;
+    }
+
+    /**
    * 从bing.com 搜索数据
    *
    * @param bing
@@ -81,7 +87,6 @@ public class CrawlServiceImpl implements CrawlService {
               var name = e.text();
               tem.setTitle(name);
               tem.setUrl(url);
-              tem.setSite(NetUtils.getDomainUrl(url));
               res.add(tem);
             }
           });
@@ -99,7 +104,6 @@ public class CrawlServiceImpl implements CrawlService {
             SearchVO tem = new SearchVO();
             var url = i.attr("mu");
             tem.setUrl(url);
-            tem.setSite(NetUtils.getDomainUrl(url));
             var info = i.select("div > div:nth-child(1) > h3 > a ").first();
             if (info != null) {
               tem.setTitle(info.text());
@@ -125,7 +129,6 @@ public class CrawlServiceImpl implements CrawlService {
             if (ca != null) {
               var url = ca.select("a").first().attr("href");
               temp.setUrl(url);
-              temp.setSite(NetUtils.getDomainUrl(url));
             }
             var info = i.getElementsByClass("MUxGbd").first();
 

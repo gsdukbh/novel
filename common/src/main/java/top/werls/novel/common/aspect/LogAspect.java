@@ -15,17 +15,17 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class LogAspect {
-    @Pointcut("execution(public * top.werls.springboottemplate.*.controller.*.*(..))")
+    @Pointcut("execution(public * top.werls.novel.*.controller.*.*(..))")
     public void logPointCut() {
     }
 
     @Before("logPointCut()")
     public void before(JoinPoint joinPoint) {
-        log.info("before class: {} ,method: {}", joinPoint.getSignature().getDeclaringType(),joinPoint.getSignature().getName());
+//        log.info("before class: {} ,method: {}", joinPoint.getSignature().getDeclaringType(),joinPoint.getSignature().getName());
     }
     @After("logPointCut()")
     public void after(JoinPoint joinPoint) {
-        log.info("after class: {} ,method: {}", joinPoint.getSignature().getDeclaringType(),joinPoint.getSignature().getName());
+//        log.info("after class: {} ,method: {}", joinPoint.getSignature().getDeclaringType(),joinPoint.getSignature().getName());
     }
     @Around("logPointCut()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
