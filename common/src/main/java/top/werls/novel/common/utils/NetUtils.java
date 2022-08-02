@@ -23,7 +23,7 @@ public class NetUtils {
     Pattern r = Pattern.compile(pattern);
     Matcher m = r.matcher(str);
     if (m.find()) {
-      return m.group(0);
+      return m.group(2);
     }
     return "";
   }

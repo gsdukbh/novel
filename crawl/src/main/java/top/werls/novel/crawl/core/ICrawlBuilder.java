@@ -1,6 +1,8 @@
 package top.werls.novel.crawl.core;
 
 import lombok.Data;
+import top.werls.novel.common.utils.NetUtils;
+import top.werls.novel.crawl.core.biquge.CrawlB520CC;
 
 /**
  *
@@ -32,7 +34,13 @@ public class ICrawlBuilder {
       return this;
   }
   public  ICrawl build(){
+      var domain = NetUtils.getDomainUrl(this.url);
+      switch (domain){
+          case "www.b520.cc"->{
+              return  new CrawlB520CC(url,ua);
+          }
 
+      }
 
       return  null;
   }
