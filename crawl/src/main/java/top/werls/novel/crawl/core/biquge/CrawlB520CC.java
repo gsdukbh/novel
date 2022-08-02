@@ -27,7 +27,6 @@ public class CrawlB520CC  extends AbstractICrawl {
     public BookChapterVo getBookInfo() throws IOException {
         Document doc = Jsoup.connect(this.url).userAgent(ua).get();
 
-
         return null;
     }
 }

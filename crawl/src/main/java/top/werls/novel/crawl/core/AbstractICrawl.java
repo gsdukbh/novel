@@ -25,4 +25,11 @@ public abstract class AbstractICrawl implements ICrawl {
      */
     protected  String ua;
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUa(String ua) {
+        this.ua = ua;
+    }
 }

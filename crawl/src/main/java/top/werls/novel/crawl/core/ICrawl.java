@@ -18,5 +18,5 @@ public interface ICrawl extends Serializable {
      * 获取图书信息
      * @return BookChapterVo 解析后的数据
      */
-    BookChapterVo getBookInfo() throws IOException;
+     BookChapterVo getBookInfo() throws IOException;
 }

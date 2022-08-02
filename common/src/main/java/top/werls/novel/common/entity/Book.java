@@ -24,4 +24,5 @@ public class Book extends BaseEntity implements Serializable {
   private String author;
   private String description;
   private String url;
+  private  String img;
 }

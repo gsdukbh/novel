@@ -26,4 +26,5 @@ public class SearchVO implements Serializable {
     private  String description;
     @Schema(description = "是否解析")
     private boolean encoded;
+    private  String img;
 }
