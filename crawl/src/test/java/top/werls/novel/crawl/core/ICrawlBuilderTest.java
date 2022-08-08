@@ -1,9 +1,11 @@
 package top.werls.novel.crawl.core;
 
+import com.sun.jdi.VoidType;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import top.werls.novel.common.utils.NetUtils;
 
 import java.io.IOException;
@@ -23,13 +25,6 @@ class ICrawlBuilderTest {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
 
   @Test
-  void CrawlB520CC() throws IOException {
-    Document doc = Jsoup.connect("http://www.b520.cc/52_52542/").userAgent(Chrome).get();
-
-    Element mainInfo = doc.getElementById("maininfo");
-  }
-
-  @Test
   void test() {
     String pattern = "(http(s)?://)(([\\w-]+\\.)+\\w+(:\\d{1,5})?)";
     Pattern r = Pattern.compile(pattern);
@@ -42,7 +37,5 @@ class ICrawlBuilderTest {
       System.out.println(m.group(3));
       System.out.println(a);
     }
-
-
   }
 }

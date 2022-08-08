@@ -26,9 +26,11 @@ public class BookChapterVo implements Serializable {
     @Schema(description = "作者")
     private  String author;
     private  String url;
+    private String description;
+    private  String img;
     /**
      * 章节
      */
-    @Schema(description = "章节")
+    @Schema(description = "章节信息 不包含 内容",name = "章节")
     private List<BookChapter> chapters;
 }
