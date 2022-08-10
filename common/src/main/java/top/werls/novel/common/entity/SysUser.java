@@ -1,19 +1,26 @@
 package top.werls.novel.common.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serial;
 import java.io.Serializable;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Entity
+@Setter
+@Getter
+@ToString
 @Schema(description = "用户实体类")
 public class SysUser extends BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    private Long uid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer uid;
 
     @Schema(description = "用户名", example = "admin", required = true)
     private String username;

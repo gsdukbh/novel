@@ -6,7 +6,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import top.werls.novel.common.entity.BookChapter;
 import top.werls.novel.common.utils.NetUtils;
+import top.werls.novel.crawl.core.ICrawl;
+import top.werls.novel.crawl.core.ICrawlBuilder;
 import top.werls.novel.crawl.service.CrawlService;
 import top.werls.novel.crawl.vo.BookChapterVo;
 import top.werls.novel.crawl.vo.SearchVO;
@@ -62,8 +65,22 @@ public class CrawlServiceImpl implements CrawlService {
   }
 
     @Override
-    public BookChapterVo getBookInfo(String bookName, String url) throws IOException {
-        return null;
+    public BookChapterVo getBookInfo( String url) throws IOException {
+        ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
+        return crawl.getBookInfo();
+    }
+
+    /**
+     * 获取章节内容
+     *
+     * @param url 章节url
+     * @return BookChapter {@link  BookChapter} 章节内容
+     * @throws IOException 获取网页数据失败
+     */
+    @Override
+    public BookChapter getChapter(String url) throws IOException {
+        ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
+        return crawl.getBookChapter();
     }
 
     /**
@@ -127,14 +144,18 @@ public class CrawlServiceImpl implements CrawlService {
             SearchVO temp = new SearchVO();
             var ca = i.getElementsByClass("yuRUbf").first();
             if (ca != null) {
-              var url = ca.select("a").first().attr("href");
-              temp.setUrl(url);
+              var url = ca.select("a").first();
+              if (url!=null){
+                  temp.setUrl(url.attr("href"));
+              }
             }
             var info = i.getElementsByClass("MUxGbd").first();
 
             if (info != null) {
-              var name = info.selectFirst("em").text();
-              temp.setTitle(name);
+              var name = info.selectFirst("em");
+              if (name!=null ){
+                  temp.setTitle(name.text());
+              }
               var description = info.getElementsByTag("span");
               StringBuilder descriptions = new StringBuilder();
               for (var thr : description) {

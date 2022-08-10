@@ -1,6 +1,7 @@
 package top.werls.novel.system.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class LoginController {
 
     @Resource
     private SysUserService userService;
-
+    @Operation(summary = "用户登陆")
     @PostMapping("/login")
     public ResultData<LoginVo> login(@RequestBody LoginParam param) {
         return ResultData.success(userService.login(param));

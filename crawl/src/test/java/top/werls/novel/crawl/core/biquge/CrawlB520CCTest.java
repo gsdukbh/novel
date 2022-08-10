@@ -49,6 +49,21 @@ class CrawlB520CCTest {
   @Test
   void build() throws IOException {
     ICrawl iCrawl = ICrawlBuilder.builder().setUa(Chrome).setUrl("http://www.b520.cc/38_38857/").build();
-    System.out.println(iCrawl.getBookInfo());
+//    System.out.println(iCrawl.getBookInfo());
+    iCrawl = ICrawlBuilder.builder().setUrl("http://www.b520.cc/38_38857/15054739.html").build();
+
+    System.out.println(iCrawl.getBookChapter());
+  }
+
+  @Test
+  void getBookChapter() throws IOException {
+    Document doc = Jsoup.connect("http://www.b520.cc/38_38857/15054739.html").userAgent(Chrome).get();
+     var name = doc.select("#wrapper > div.content_read > div > div.bookname > h1").first();
+    assert name != null;
+    System.out.println(name.text());
+    var content= doc.getElementById("content");
+    System.out.println(content);
+    assert content != null;
+    System.out.println(content.text());
   }
 }

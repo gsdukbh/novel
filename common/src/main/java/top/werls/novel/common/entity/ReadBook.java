@@ -1,8 +1,8 @@
 package top.werls.novel.common.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -13,22 +13,25 @@ import java.io.Serializable;
  * @version TODO
  * @since on
  */
-@Data()
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@ToString
 public class ReadBook extends BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+
     /**
      * user id
      */
-    private  long uid;
+    private  Integer uid;
     /**
      * 图书id
      */
-    private  long bid;
+    private  Integer bid;
     /**
      * 章节id 阅读到的章节
      */
-    private  long cid;
+    private  Integer cid;
 
 }

@@ -14,6 +14,7 @@ import top.werls.novel.crawl.vo.SearchVO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,7 +31,6 @@ class CrawlServiceTest {
       "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1";
 
   @Test
-  @Timeout(value = 3)
   void getSearch() throws IOException {
     CrawlService a = new CrawlServiceImpl();
     String proxyHost = "127.0.0.1";
@@ -41,7 +41,7 @@ class CrawlServiceTest {
     // 对https也开启代理
     System.setProperty("https.proxyHost", proxyHost);
     System.setProperty("https.proxyPort", proxyPort);
-    var setProperty = a.getSearch( "圣墟", 1);
+    var setProperty = a.getSearch("圣墟", 1);
     System.out.println(setProperty);
   }
 

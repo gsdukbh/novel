@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 网站 <a href="http://www.b520.cc">解析网站</a> date created 2022/8/1
- *
+ * 网站 <a href="http://www.b520.cc">解析网站</a>
+ * date created 2022/8/1
  * @author Jiawei Lee
  * @version TODO
  * @since on
@@ -75,6 +75,17 @@ public class CrawlB520CC extends AbstractICrawl {
   @Override
   public BookChapter getBookChapter() throws IOException {
     Document doc = Jsoup.connect(this.url).userAgent(ua).get();
-    return null;
+    BookChapter res = new BookChapter();
+    res.setUrl(url);
+    var name = doc.select("#wrapper > div.content_read > div > div.bookname > h1").first();
+    if (name !=null ){
+      res.setName(name.text());
+    }
+    var content= doc.getElementById("content");
+    if (content!=null){
+      res.setLength(content.text().length());
+      res.setContent(content.text().strip());
+    }
+    return res;
   }
 }

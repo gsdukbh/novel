@@ -6,7 +6,16 @@ spring:
   messages:
     basename: i18n
     encoding: UTF-8
-
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:data.db?date_string_format=yyyy-MM-dd HH:mm:ss
+  jpa:
+    database-platform: top.werls.novel.common.utils.SQLDialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: none
+    open-in-view: false
 logging:
   config: classpath:logback-spring-dev.xml
   file:
@@ -15,7 +24,7 @@ logging:
   charset:
     file: UTF-8
 env:
-  appName: 'spring boot template'
+  appName: 'novel'
   version: '0.0.1'
   isEnableSwagger: true
   jwt:
