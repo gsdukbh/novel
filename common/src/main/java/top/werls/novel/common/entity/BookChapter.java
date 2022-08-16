@@ -35,5 +35,10 @@ public class BookChapter extends BaseEntity implements Serializable {
   private String url;
   /** 字数 */
   private Integer length;
+  /**
+   * 章节序号
+   */
+  private Integer number;
+  private  String hash;
   private  boolean isCache;
 }

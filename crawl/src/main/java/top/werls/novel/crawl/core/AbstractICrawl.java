@@ -1,7 +1,11 @@
 package top.werls.novel.crawl.core;
 
+import top.werls.novel.common.entity.BookChapter;
+
+import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 抽象类
@@ -25,4 +29,13 @@ public abstract class AbstractICrawl implements ICrawl {
      */
     protected  String ua;
 
+  /**
+   * 某些网站是 分页展示 章节信息的，需要分次请求解析 默认不实现
+   * @return
+   * @throws IOException
+   */
+  @Override
+  public List<BookChapter> getBookChapterByPages() throws IOException {
+        return null;
+    }
 }

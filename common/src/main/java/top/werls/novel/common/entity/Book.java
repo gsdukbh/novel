@@ -30,6 +30,7 @@ public class Book extends BaseEntity implements Serializable {
   private String otherInfo;
   private String url;
   private  String img;
+  private  String hash;
   private  boolean isCache;
 
 }

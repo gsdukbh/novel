@@ -117,7 +117,7 @@ class CrawlServiceTest {
     Document doc =
         Jsoup.connect("https://www.google.com/search")
             .userAgent(chrome)
-            .data("q", "圣墟")
+            .data("q", "第一序列")
             .data("start", "0") // min 0
             .get();
     Element search = doc.getElementById("search");
@@ -130,7 +130,7 @@ class CrawlServiceTest {
           var tem = i.getElementsByClass("MUxGbd").first();
           // name
           var name = tem.selectFirst("em").text();
-
+          System.out.println(url);
           System.out.println(name);
           var description = tem.getElementsByTag("span");
 
