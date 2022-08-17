@@ -22,6 +22,7 @@ import java.io.Serial;
 @Entity
 public class CrawlEncode extends BaseEntity {
   @Serial private static final long serialVersionUID = 2L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
@@ -36,22 +37,32 @@ public class CrawlEncode extends BaseEntity {
    * more</a>
    */
   private String bookNameType;
+
+  private String bookNameTypeKey;
   /** 作者名称的 的选择器 */
   private String authorSelect;
   /** 作者名称的 item index */
   private Integer authorIndex;
 
   private String authorType;
+  private String authorTypeKey;
   private String descriptionSelect;
   private Integer descriptionIndex;
-  private Integer descriptionType;
+  private String descriptionType;
+  private String descriptionTypeKey;
   private String chapterListSelect;
-  private Integer chapterListIndex;
-  private String chapterListType;
+
+  private boolean isTwoClick;
+  private String twoClickUrlSelect;
+  private Integer twoClickUrlSelectIndex;
+
   /** 需要分页 获取的数据 情况 */
   private boolean chapterListPages;
+
+  private String chapterListPagesUrlSelect;
 
   private String chapterContentSelect;
   private Integer chapterContentIndex;
   private String chapterContentType;
+  private String chapterContentTypeKey;
 }

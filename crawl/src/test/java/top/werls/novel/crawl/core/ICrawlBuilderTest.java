@@ -38,6 +38,12 @@ class ICrawlBuilderTest {
       System.out.println(a);
     }
   }
+  @Test
+  void  cs() throws IOException {
+    var  a = Jsoup.connect("https://www.hetushu.com/book/5501/index.html").userAgent(Chrome).get();
+    var  list = a.select("#dir > dd > a");
+    System.out.println(list);
+  }
 
   //重点
   @Test

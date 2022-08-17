@@ -28,6 +28,8 @@ public class BookChapterVo implements Serializable {
     private  String url;
     private String description;
     private  String img;
+    private  boolean isPages;
+    private String nextURL;
     /**
      * 章节
      */

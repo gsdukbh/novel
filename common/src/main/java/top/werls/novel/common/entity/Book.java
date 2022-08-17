@@ -25,12 +25,12 @@ public class Book extends BaseEntity implements Serializable {
 
   @Schema(description = "书名")
   private String name;
+
   private String author;
   private String description;
   private String otherInfo;
   private String url;
-  private  String img;
-  private  String hash;
-  private  boolean isCache;
-
+  private String img;
+  private String hash;
+  private boolean isCache;
 }
