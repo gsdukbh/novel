@@ -3,6 +3,7 @@ package top.werls.novel.crawl.core;
 import lombok.Data;
 import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.crawl.core.biquge.CrawlB520CC;
+import top.werls.novel.crawl.core.biquge.CrawlBiqiugege8Com;
 
 import java.util.Set;
 
@@ -41,10 +42,11 @@ public class ICrawlBuilder {
         return new CrawlB520CC(url, ua);
       }
       case "www.biqiugege8.com"->{
-
+        return  new CrawlBiqiugege8Com();
+      }
+      default -> {
+        return  new EncodeEngine();
       }
     }
-
-    return null;
   }
 }

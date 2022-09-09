@@ -43,6 +43,25 @@ public class EncodeEngine extends AbstractICrawl {
     getAuthor(doc, res, crawlEncode);
     // 获取详情信息
     getDescription(doc, res, crawlEncode);
+    //获取图片
+    getImages(doc, res, crawlEncode);
+    // 获取章节列表
+    getChapterList(doc, res, crawlEncode);
+    return res;
+  }
+
+  private  void getImages(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+    // 图像
+    var img = doc.select(crawlEncode.getBookImgSelect());
+    if (img.size()>0){
+      var element = img.get(crawlEncode.getBookImgIndex());
+      if (element!=null){
+        res.setImg( element.attr("href"));
+      }
+    }
+  }
+
+  private  void getChapterList(Document doc, BookChapterVo res, CrawlEncode crawlEncode) throws IOException {
     // 章节目录 不包含内容
     // 需要二次点击
     if (crawlEncode.isTwoClick()) {
@@ -63,11 +82,9 @@ public class EncodeEngine extends AbstractICrawl {
       chaptersList.add(tem);
     }
     res.setChapters(chaptersList);
-
-    return null;
   }
 
-  private static void getDescription(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  private  void getDescription(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     var description = doc.select(crawlEncode.getDescriptionSelect());
     if (description.size() > 0) {
       var tem = description.get(crawlEncode.getDescriptionIndex());
@@ -87,7 +104,7 @@ public class EncodeEngine extends AbstractICrawl {
     }
   }
 
-  private static void getAuthor(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  private  void getAuthor(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     var author = doc.select(crawlEncode.getAuthorSelect());
     if (author.size() > 0) {
       var tem = author.get(crawlEncode.getAuthorIndex());
@@ -107,7 +124,7 @@ public class EncodeEngine extends AbstractICrawl {
     }
   }
 
-  private static void getBookName(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  private  void getBookName(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     // 获取小说名称
     var bookName = doc.select(crawlEncode.getBookNameSelect());
     if (bookName.size() > 0) {
@@ -135,17 +152,63 @@ public class EncodeEngine extends AbstractICrawl {
    */
   @Override
   public BookChapter getBookChapter() throws IOException {
-    return null;
+    Document doc = Jsoup.connect(this.url).userAgent(ua).get();
+    String site = NetUtils.getDomainUrl(url);
+    BookChapter chapter =new BookChapter();
+    CrawlEncode crawlEncode = encodeRepository.findBySite(site).orElse(null);
+    if (crawlEncode == null) return null;
+    var content = doc.select(crawlEncode.getChapterContentSelect());
+    if (content.size()>0){
+      var element = content.get(crawlEncode.getChapterContentIndex());
+      if (element !=null){
+        switch (crawlEncode.getChapterContentType()){
+          case "attr":{
+            chapter.setContent(element.attr(crawlEncode.getChapterContentTypeKey()));
+          }
+          case "text":{
+            chapter.setContent(element.text());
+          }
+          case "html":{
+            chapter.setContent(element.html());
+          }
+        }
+      }
+    }
+    var name = doc.select(crawlEncode.getChapterNameSelect());
+    if (name.size()> 0){
+      var element =name.get(crawlEncode.getChapterNameIndex());
+      if (element!=null){
+        switch (crawlEncode.getChapterNameType()){
+          case "attr":{
+            chapter.setName(element.attr(crawlEncode.getChapterNameTypeKey()));
+          }
+          case "text":{
+            chapter.setName(element.text());
+          }
+          case "html":{
+            chapter.setName(element.html());
+          }
+        }
+      }
+    }
+    chapter.setUrl(this.url);
+    chapter.setHash(String.valueOf(url.hashCode()));
+    chapter.setLength(chapter.getContent().length());
+    return chapter;
   }
 
   /**
    * 某些网站是 分页展示 章节信息的，需要分次请求解析 默认不实现
-   *
    * @return
    * @throws IOException
    */
   @Override
   public List<BookChapter> getBookChapterByPages() throws IOException {
-    return super.getBookChapterByPages();
+    Document doc = Jsoup.connect(url).userAgent(ua).get();
+    String site = NetUtils.getDomainUrl(url);
+    BookChapter chapter =new BookChapter();
+    CrawlEncode crawlEncode = encodeRepository.findBySite(site).orElse(null);
+
+    return null;
   }
 }

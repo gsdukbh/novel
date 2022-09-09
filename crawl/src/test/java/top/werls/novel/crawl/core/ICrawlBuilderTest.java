@@ -25,6 +25,10 @@ class ICrawlBuilderTest {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
 
   @Test
+  void encodeEngine(){
+
+  }
+  @Test
   void test() {
     String pattern = "(http(s)?://)(([\\w-]+\\.)+\\w+(:\\d{1,5})?)";
     Pattern r = Pattern.compile(pattern);

@@ -30,7 +30,7 @@ public interface ICrawl extends Serializable {
   BookChapter getBookChapter() throws IOException;
 
   /**
-   * 某些网站是 分页展示 章节信息的，需要分次请求解析。
+   * 某些网站是 分页展示 章节信息 url，但是不包括主体内容 需要分次请求解析。
    * @return
    * @throws IOException
    */

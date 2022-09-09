@@ -51,7 +51,13 @@ public class CrawlEncode extends BaseEntity {
   private String descriptionType;
   private String descriptionTypeKey;
   private String chapterListSelect;
-
+  private  String bookImgSelect;
+  private  Integer bookImgIndex;
+  private  String bookImgType;
+  private  String bookImgTypeKey;
+  /**
+   * 不是一次性展示 所有目录
+   */
   private boolean isTwoClick;
   private String twoClickUrlSelect;
   private Integer twoClickUrlSelectIndex;
@@ -61,8 +67,18 @@ public class CrawlEncode extends BaseEntity {
 
   private String chapterListPagesUrlSelect;
 
+  /**
+   * 章节内容部分 选择器
+   */
   private String chapterContentSelect;
   private Integer chapterContentIndex;
   private String chapterContentType;
   private String chapterContentTypeKey;
+  /**
+   * 章节名称
+   */
+  private  String chapterNameSelect;
+  private  Integer chapterNameIndex;
+  private  String chapterNameType;
+  private  String chapterNameTypeKey;
 }
