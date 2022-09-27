@@ -1,51 +1,1 @@
-package top.werls.novel.common.utils;
-
-import java.util.*;
-
-/**
- * @author Jiawei Lee
- * @version TODO
- * @date Date: 2022/9/9
- * @since on
- */
-public class ChineseNumeralsUtils {
-  /** 中文数字与阿拉伯数字对应 */
-  private static final Map<String, Integer> CN_NUM =
-      Map.of("零",0,"一", 1, "二", 2, "三", 3, "四", 4, "五", 5, "六", 6, "七", 7, "八", 8, "九", 9);
-
-  private static final Map<String, Integer> CN_UNIT =
-      Map.of("十", 10, "百", 100, "千", 1000, "万", 10000, "亿", 1000000000);
-
-  public static long ChineseNumeralsToNum(String ChineseNumerals) {
-    Deque<Long> stack = new ArrayDeque<>();
-    for (int i = 0; i < ChineseNumerals.length(); i++) {
-      String str = String.valueOf(ChineseNumerals.charAt(i));
-      // 是否时单位符号
-      if (CN_UNIT.containsKey(str)) {
-        long temp = CN_UNIT.get(str);
-        long num = 0;
-        //当单位大小小于前者时, 累计前面的和
-        while (!stack.isEmpty() && stack.peek() < temp) {
-          num += stack.pop();
-        }
-        // 对零和十 单位处理
-        if (stack.isEmpty() && num == 0 && "十".equals(str)) {
-          stack.push(10L);
-        } else {
-          stack.push(num * temp);
-        }
-      } else {
-        //入栈
-        int num = CN_NUM.get(str);
-        stack.push((long) num);
-      }
-    }
-    long ans = 0;
-    while (!stack.isEmpty()) {
-      ans += stack.pop();
-    }
-
-    return ans;
-  }
-
-}
+package top.werls.novel.common.utils;import java.math.BigDecimal;import java.math.BigInteger;import java.math.RoundingMode;import java.util.*;/** * @author Jiawei Lee * @version TODO * @date Date: 2022/9/9 * @since on */public class ChineseNumeralsUtils {  /** 中文数字与阿拉伯数字对应 */  private static final Map<String, Integer> CN_NUM =      Map.of("零", 0, "一", 1, "二", 2, "三", 3, "四", 4, "五", 5, "六", 6, "七", 7, "八", 8, "九", 9);  private static final Map<String, Integer> CN_UNIT =      Map.of("十", 10, "百", 100, "千", 1000, "万", 10000, "亿", 1000000000);  /**   * 支持小数 ,   * @param ChineseNumerals 中文数字   * @return BigDecimal 解析的数字   */  public static BigDecimal ChineseNumeralsToNum(String ChineseNumerals) {    Deque<BigDecimal> stack = new ArrayDeque<>();    boolean decimal = false, burden = false;    for (int i = 0; i < ChineseNumerals.length(); i++) {      String str = String.valueOf(ChineseNumerals.charAt(i));      if (str.equalsIgnoreCase("负")) {        burden = true;        continue;      }      if (str.equalsIgnoreCase("点")) {        decimal = true;        continue;      }      // 是否时单位符号      if (CN_UNIT.containsKey(str)) {        long temp = CN_UNIT.get(str);        BigDecimal num = BigDecimal.ZERO;        // 当单位大小小于前者时, 累计前面的和        while (!stack.isEmpty() && stack.peek().compareTo(BigDecimal.valueOf(temp)) < 0) {          num = num.add(stack.pop());        }        // 对零和十 单位处理        if (stack.isEmpty() && num.compareTo(BigDecimal.ZERO) == 0 && "十".equals(str)) {          stack.push(BigDecimal.TEN);        } else {          stack.push(num.multiply(BigDecimal.valueOf(temp)));        }      } else {        // 入栈        int num = CN_NUM.get(str);        stack.push(BigDecimal.valueOf(num));      }      if (decimal && i == ChineseNumerals.length() - 1) {        StringBuilder tmp = new StringBuilder("0.");        while (!stack.isEmpty() && stack.peek().compareTo(BigDecimal.TEN) < 0) {          tmp.append(stack.pop());        }        BigDecimal temp = new BigDecimal(tmp.toString());        stack.push(temp);      }    }    BigDecimal ans = BigDecimal.ZERO;    while (!stack.isEmpty()) {      ans = ans.add(stack.pop());    }    if (burden) {      return ans.negate();    }    return ans;  }  /**   * 不支持小数   * 阿拉伯数字转中文数字   * @param num 数字   * @return String[] 中文数字, 0 大写, 1 小写   */  public static String[] numToChineseNumerals(String num) {    String[] units = new String[] {"十", "百", "千", "万", "十", "百", "千", "亿"};    // 中文大写数字数组    String[] numeric = new String[] {"零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"};    String[] numeric2 = new String[] {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};    StringBuilder res = new StringBuilder();    StringBuilder res2 = new StringBuilder();    // 遍历一行中所有数字    for (int k = -1; num.length() > 0; k++) {      // 解析最后一位      int j = Integer.parseInt(num.substring(num.length() - 1));      String rtemp = numeric[j];      String rtemp2 = numeric2[j];      // 数值不是0且不是个位 或者是万位或者是亿位 则去取单位      if (j != 0 && k != -1 || k % 8 == 3 || k % 8 == 7) {        rtemp += units[k % 8];        rtemp2 += units[k % 8];      }      // 拼在之前的前面      res.insert(0, rtemp);      res2.insert(0, rtemp2);      // 去除最后一位      num = num.substring(0, num.length() - 1);    }    // 去除后面连续的零零..    while (res.toString().endsWith(numeric[0])) {      res = new StringBuilder(res.substring(0, res.lastIndexOf(numeric[0])));      res2= new StringBuilder(res2.substring(0, res2.lastIndexOf(numeric2[0])));    }    // 将零零替换成零    while (res.toString().contains(numeric[0] + numeric[0])) {      res = new StringBuilder(res.toString().replaceAll(numeric[0] + numeric[0], numeric[0]));      res2 = new StringBuilder(res2.toString().replaceAll(numeric2[0] + numeric2[0], numeric2[0]));    }    // 将 零+某个单位 这样的窜替换成 该单位 去掉单位前面的零    for (int m = 1; m < units.length; m++) {      res = new StringBuilder(res.toString().replaceAll(numeric[0] + units[m], units[m]));      res2 = new StringBuilder(res2.toString().replaceAll(numeric2[0] + units[m], units[m]));    }    // 将壹十改为十    if (res.toString().startsWith(numeric[1] + units[0])) {      res = new StringBuilder(res.substring(1));      res2 = new StringBuilder(res2.substring(1));    }    return  new String[]{res.toString(),res2.toString()};  }}

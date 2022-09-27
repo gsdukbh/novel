@@ -6,7 +6,9 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 import top.werls.novel.common.entity.BookChapter;
 import top.werls.novel.common.entity.CrawlEncode;
+import top.werls.novel.common.utils.ChineseNumeralsUtils;
 import top.werls.novel.common.utils.NetUtils;
+import top.werls.novel.common.utils.TextUtils;
 import top.werls.novel.crawl.repository.CrawlEncodeRepository;
 import top.werls.novel.crawl.vo.BookChapterVo;
 
@@ -191,6 +193,8 @@ public class EncodeEngine extends AbstractICrawl {
         }
       }
     }
+    var tem = TextUtils.chapterNumber(chapter.getName());
+    chapter.setNumber(ChineseNumeralsUtils.ChineseNumeralsToNum(tem).intValue());
     chapter.setUrl(this.url);
     chapter.setHash(String.valueOf(url.hashCode()));
     chapter.setLength(chapter.getContent().length());
@@ -208,6 +212,7 @@ public class EncodeEngine extends AbstractICrawl {
     String site = NetUtils.getDomainUrl(url);
     BookChapter chapter =new BookChapter();
     CrawlEncode crawlEncode = encodeRepository.findBySite(site).orElse(null);
+
 
     return null;
   }

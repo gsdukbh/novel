@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import top.werls.novel.common.entity.BookChapter;
+import top.werls.novel.common.utils.ChineseNumeralsUtils;
+import top.werls.novel.common.utils.TextUtils;
 import top.werls.novel.crawl.core.AbstractICrawl;
 import top.werls.novel.crawl.vo.BookChapterVo;
 
@@ -79,12 +81,16 @@ public class CrawlB520CC extends AbstractICrawl {
     res.setUrl(url);
     var name = doc.select("#wrapper > div.content_read > div > div.bookname > h1").first();
     if (name !=null ){
-      res.setName(name.text());
+      var temp = name.text();
+      res.setName(temp);
+      temp= TextUtils.chapterNumber(temp);
+      res.setNumber(ChineseNumeralsUtils.ChineseNumeralsToNum(temp).intValue());
     }
     var content= doc.getElementById("content");
     if (content!=null){
-      res.setLength(content.text().length());
-      res.setContent(content.text().strip());
+      var tem = content.text();
+      res.setLength(tem.length());
+      res.setContent(tem.strip());
     }
     return res;
   }

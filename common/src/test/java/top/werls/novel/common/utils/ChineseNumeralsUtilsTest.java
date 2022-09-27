@@ -2,6 +2,11 @@ package top.werls.novel.common.utils;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -17,5 +22,8 @@ class ChineseNumeralsUtilsTest {
     var n = "一千零三万五十";
     var s= ChineseNumeralsUtils.ChineseNumeralsToNum(n);
     System.out.println(s);
+    System.out.println(Arrays.toString(ChineseNumeralsUtils.numToChineseNumerals(s.toString())));
   }
+
+
 }

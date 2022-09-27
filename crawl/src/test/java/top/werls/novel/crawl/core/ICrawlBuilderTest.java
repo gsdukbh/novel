@@ -7,6 +7,7 @@ import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import top.werls.novel.common.utils.NetUtils;
+import top.werls.novel.common.utils.TextUtils;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
