@@ -14,7 +14,6 @@ import java.util.Arrays;
  * @since on  2022/6/30
  */
 
-@SpringBootTest
 class RSATest {
     @Value("${env.jwt.privateKey}")
     private RSAPrivateKey key;

@@ -2,6 +2,7 @@ package top.werls.novel.crawl.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import top.werls.novel.crawl.service.CrawlService;
 import top.werls.novel.crawl.vo.BookChapterVo;
 import top.werls.novel.crawl.vo.SearchVO;
 
-import javax.annotation.Resource;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -28,7 +29,8 @@ import java.util.List;
 @Tag(name = "爬虫主要接口", description = "获取小说数据")
 public class CrawlController {
 
-  @Resource private CrawlService crawlService;
+  @Resource
+  private CrawlService crawlService;
 
   @Operation(summary = "搜索小说")
   @RequestMapping("/s/{word}/{page:\\d+}")

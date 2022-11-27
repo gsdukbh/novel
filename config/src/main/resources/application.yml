@@ -1,5 +1,3 @@
-server:
-  port: 8080
 spring:
   application:
     name: ${env.appName}
@@ -10,12 +8,13 @@ spring:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite:data.db?date_string_format=yyyy-MM-dd HH:mm:ss
   jpa:
-    database-platform: top.werls.novel.common.utils.SQLDialect
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: none
     open-in-view: false
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+
 logging:
   config: classpath:logback-spring-dev.xml
   file:
@@ -23,6 +22,8 @@ logging:
     name: log
   charset:
     file: UTF-8
+server:
+    port: 8080
 env:
   appName: 'novel'
   version: '0.0.1'

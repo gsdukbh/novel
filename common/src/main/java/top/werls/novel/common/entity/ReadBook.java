@@ -2,7 +2,7 @@ package top.werls.novel.common.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 

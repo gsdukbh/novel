@@ -2,6 +2,7 @@ package top.werls.novel.crawl.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.aspectj.weaver.ast.Literal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,9 +13,7 @@ import top.werls.novel.crawl.service.impl.CrawlServiceImpl;
 import top.werls.novel.crawl.vo.SearchVO;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -143,10 +142,28 @@ class CrawlServiceTest {
         });
   }
 
+  record User(int id, String name) {
+    @Override
+    public String toString() {
+      return "User{" + "id=" + id + ", name='" + name + '\'' + '}';
+    }
+  }
+
   @Test
   void duckduckgo() {
     // https://duckduckgo.com/?q=
-
+    List<User> list =
+        new ArrayList<>(
+            List.of(
+                new User(1, "博文"),
+                new User(2, "google"),
+                new User(3, "xiaozi "),
+                new User(4, "bing")));
+    list.sort((a, b) -> {
+        System.out.println("1");
+        return a.id - b.id;
+    });
+    System.out.println(list);
   }
 
   @Test

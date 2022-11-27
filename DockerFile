@@ -1,0 +1,7 @@
+FROM amazoncorretto:17.0.5
+RUN mkdir "novel"
+MAINTAINER  'JiaWei'
+WORKDIR /novel
+ADD /app/build/libs/* ./
+EXPOSE 8080
+CMD java -jar app*.jar

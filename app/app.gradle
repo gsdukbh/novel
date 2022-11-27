@@ -2,6 +2,7 @@
 dependencies {
     implementation project(':system')
     implementation project(':config')
+    implementation project(':crawl')
 
 }
 

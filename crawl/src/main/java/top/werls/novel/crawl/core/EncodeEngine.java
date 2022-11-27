@@ -1,6 +1,7 @@
 package top.werls.novel.crawl.core;
 
-import org.hibernate.type.descriptor.sql.VarbinaryTypeDescriptor;
+import jakarta.annotation.Resource;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import top.werls.novel.common.utils.TextUtils;
 import top.werls.novel.crawl.repository.CrawlEncodeRepository;
 import top.werls.novel.crawl.vo.BookChapterVo;
 
-import javax.annotation.Resource;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ import java.util.List;
  */
 @Component
 public class EncodeEngine extends AbstractICrawl {
-  @Resource CrawlEncodeRepository encodeRepository;
+  @Resource
+  CrawlEncodeRepository encodeRepository;
   /**
    * 获取图书信息
    *

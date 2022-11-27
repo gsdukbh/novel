@@ -3,6 +3,7 @@ package top.werls.novel.system.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import top.werls.novel.system.param.LoginParam;
 import top.werls.novel.system.service.SysUserService;
 import top.werls.novel.system.vo.LoginVo;
 
-import javax.annotation.Resource;
+
 
 
 @Slf4j

@@ -1,0 +1,11 @@
+services:
+  dev-mysql:
+    image: mysql:8.0.31
+    container_name: dev-mysql
+    volumes:
+      - ./myData:/var/lib/mysql
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456

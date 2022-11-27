@@ -14,6 +14,6 @@ class NetUtilsTest {
   @Test
   void getDomainUrl() {
     var domain = NetUtils.getDomainUrl("https://www.b520.cc/52_52542/");
-    System.out.println(domain);
+    assert  domain.equalsIgnoreCase("www.b520.cc");
   }
 }
