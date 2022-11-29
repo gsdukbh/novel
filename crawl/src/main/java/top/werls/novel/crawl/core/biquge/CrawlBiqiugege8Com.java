@@ -22,6 +22,7 @@ public class CrawlBiqiugege8Com extends AbstractICrawl {
      */
     @Override
     public BookChapterVo getBookInfo() throws IOException {
+
         return null;
     }
 

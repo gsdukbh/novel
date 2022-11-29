@@ -53,27 +53,9 @@ class ICrawlBuilderTest {
   //重点
   @Test
   void core() throws IOException {
-    // body > div.listmain > dl > dd:nth-child(9)
-    //    Document doc =
-    // Jsoup.connect("https://www.biqiugege8.com/book/4772/").userAgent(Chrome).get();
-    var c = new bookname("body > div.book > div.info > h2", 0);
-    var info = new a("https://www.biqiugege8.com/book/4772/", c);
 
-    if (info.url != null) {
-      Document doc = Jsoup.connect(info.url).userAgent(Chrome).get();
 
-      doc.select("body > div.listmain > dl > dd:nth-child(2)");
-      if (info.name != null) {
-        var temp = doc.select(info.name.select);
-        var t = temp.get(info.name.indexItem);
-        if (t != null) {
-          System.out.println(t.text());
-        }
-      }
-    }
   }
 
-  record a(String url, bookname name) {}
 
-  record bookname(String select, Integer indexItem) {}
 }

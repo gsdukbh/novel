@@ -1,10 +1,7 @@
 package top.werls.novel.common.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,6 +16,9 @@ import java.io.Serializable;
 @ToString
 @Schema(description = "book")
 @Entity
+@Table(name = "Book", indexes = {
+        @Index(name = "idx_book_name", columnList = "name")
+})
 public class Book extends BaseEntity implements Serializable {
 
   @Id

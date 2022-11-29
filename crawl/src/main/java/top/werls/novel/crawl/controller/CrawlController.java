@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class CrawlController {
   private CrawlService crawlService;
 
   @Operation(summary = "搜索小说")
-  @RequestMapping("/s/{word}/{page:\\d+}")
+  @GetMapping("/s/{word}/{page:\\d+}")
   public ResultData<List<SearchVO>> search(@PathVariable String word, @PathVariable int page)
       throws IOException {
     List<SearchVO> res = crawlService.getSearch(word, page);
@@ -41,16 +42,17 @@ public class CrawlController {
   }
 
   @Operation(summary = "解析图书", description = "返回小说，以及章节信息，不包含内容")
-  @RequestMapping("/b/{url}")
+  @GetMapping("/b/{url}")
   public ResultData<BookChapterVo> getBookInfo(@PathVariable String url) throws IOException {
     var res = crawlService.getBookInfo(url);
     return ResultData.success(res);
   }
 
   @Operation(summary = "解析章节", description = "返回章节内容， 需要单个章节的url")
-  @RequestMapping("/c/{url}")
-  public  ResultData<BookChapter> getChapter(@PathVariable String url){
-    return ResultData.success();
+  @GetMapping("/c/{url}")
+  public  ResultData<BookChapter> getChapter(@PathVariable String url) throws IOException {
+    var  res= crawlService.getChapter(url);
+    return ResultData.success(res);
   }
 
 }

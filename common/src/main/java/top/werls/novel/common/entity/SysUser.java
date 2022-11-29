@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 
@@ -23,7 +24,7 @@ public class SysUser extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer uid;
 
-    @Schema(description = "用户名", example = "admin", required = true)
+    @Schema(description = "用户名", example = "admin")
     private String username;
 
     @Schema(description = "密码", example = "123456", required = true)
@@ -31,8 +32,10 @@ public class SysUser extends BaseEntity implements Serializable {
     @Schema
     private String salt;
 
+
     @Schema(description = "电话", example = "1231", required = true)
     private String phone;
+    @Email
     @Schema(description = "邮箱")
     private String email;
     @Schema(description = "头像")

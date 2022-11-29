@@ -26,8 +26,6 @@ public class SecurityConfig {
   @Resource private CustomizeAuthEntryPoint authEntryPoint;
   @Resource private CustomizeAccessDeniedHandler accessDeniedHandler;
 
-  @Resource public UserDetailsServiceImpl userDetailsService;
-
   @Value("${env.isEnableSwagger}")
   private boolean isEnableSwagger;
 
@@ -37,9 +35,6 @@ public class SecurityConfig {
     return new BCryptPasswordEncoder();
   }
 
-  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-  }
 
   @Bean
   public AuthenticationManager CustomAuthenticationManager(AuthenticationConfiguration auth)

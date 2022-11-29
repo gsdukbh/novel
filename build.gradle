@@ -28,7 +28,7 @@ subprojects {
         // version 配置
         gsonVersion= '2.9.0'
         lang3Version = '3.12.0'
-        springdocVersion = '1.6.5'
+        springdocVersion = '2.0.0'
         jwtVersion = '0.11.2'
         bouncycastleVersion = '1.6.13'
         springBootVersion='3.0.0'

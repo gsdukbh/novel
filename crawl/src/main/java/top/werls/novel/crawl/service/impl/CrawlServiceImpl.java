@@ -46,19 +46,19 @@ public class CrawlServiceImpl implements CrawlService {
             .data("tn", "baidu")
             .data("pn", Integer.toString(page))
             .get();
-    Document google =
-        Jsoup.connect(this.google)
-            .userAgent(chrome)
-            .data("q", data)
-            .data("start", Integer.toString(page))
-            .get();
+//    Document google =
+//        Jsoup.connect(this.google)
+//            .userAgent(chrome)
+//            .data("q", data)
+//            .data("start", Integer.toString(page))
+//            .get();
     List<SearchVO> res = new LinkedList<>();
     // bing
     res.addAll(bingList(bing));
     // baidu
     res.addAll(baiduList(baidu));
     // google
-    res.addAll(googleSearch(google));
+//    res.addAll(googleSearch(google));
     // duckduckgo
 
     return res;
