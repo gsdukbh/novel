@@ -21,10 +21,13 @@ import top.werls.novel.system.service.impl.UserDetailsServiceImpl;
 @Configuration
 public class SecurityConfig {
 
-  @Resource private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+  @Resource
+  private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
-  @Resource private CustomizeAuthEntryPoint authEntryPoint;
-  @Resource private CustomizeAccessDeniedHandler accessDeniedHandler;
+  @Resource
+  private CustomizeAuthEntryPoint authEntryPoint;
+  @Resource
+  private CustomizeAccessDeniedHandler accessDeniedHandler;
 
   @Value("${env.isEnableSwagger}")
   private boolean isEnableSwagger;
@@ -66,6 +69,6 @@ public class SecurityConfig {
         .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    return  http.build();
+    return http.build();
   }
 }

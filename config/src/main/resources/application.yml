@@ -24,6 +24,9 @@ logging:
     file: UTF-8
 server:
     port: 8080
+init:
+  username: 'goo'
+  password: 'admin'
 env:
   appName: 'novel'
   version: '0.0.1'

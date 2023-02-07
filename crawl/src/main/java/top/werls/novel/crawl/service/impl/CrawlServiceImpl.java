@@ -166,7 +166,6 @@ public class CrawlServiceImpl implements CrawlService {
             res.add(temp);
           });
     }
-
     return res;
   }
 }

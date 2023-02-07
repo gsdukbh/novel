@@ -43,15 +43,25 @@ public class CrawlEncode extends BaseEntity {
    * more</a>
    *
    */
+
   private String bookNameType;
 
+  /**
+   * attr 类型时 的keg
+   */
   private String bookNameTypeKey;
   /** 作者名称的 的选择器 */
   private String authorSelect;
   /** 作者名称的 item index */
   private Integer authorIndex;
 
+  /**
+   * item 的类型 一般是 attr text html
+   */
   private String authorType;
+  /**
+   * 类型时 attr 的key
+   */
   private String authorTypeKey;
   private String descriptionSelect;
   private Integer descriptionIndex;

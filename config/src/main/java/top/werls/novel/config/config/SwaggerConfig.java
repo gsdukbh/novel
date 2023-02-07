@@ -15,27 +15,27 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
 
-    @Value("${env.version}")
-    private String version;
+  @Value("${env.version}")
+  private String version;
 
-    public static final String TOKEN_HEADER = "Authorization";
+  public static final String TOKEN_HEADER = "Authorization";
 
-    @Bean
-    public OpenAPI springOpenApi() {
-        return new OpenAPI()
-                .components(components())
-                .info(new Info()
-                        .title("Vben admin API")
-                        .description("Vben admin  api")
-                        .version(version));
-    }
+  @Bean
+  public OpenAPI springOpenApi() {
+    return new OpenAPI()
+        .components(components())
+        .info(new Info()
+            .title("小说")
+            .description("小说")
+            .version(version));
+  }
 
-    private Components components() {
-        Components components = new Components();
-        components.addSecuritySchemes(TOKEN_HEADER,
-                new SecurityScheme()
-                        .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"));
-        return components;
-    }
+  private Components components() {
+    Components components = new Components();
+    components.addSecuritySchemes(TOKEN_HEADER,
+        new SecurityScheme()
+            .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"));
+    return components;
+  }
 
 }

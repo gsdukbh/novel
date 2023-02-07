@@ -6,10 +6,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import top.werls.novel.common.entity.CrawlEncode;
 import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.common.utils.TextUtils;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,9 +29,8 @@ class ICrawlBuilderTest {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
 
   @Test
-  void encodeEngine(){
+  void encodeEngine() {}
 
-  }
   @Test
   void test() {
     String pattern = "(http(s)?://)(([\\w-]+\\.)+\\w+(:\\d{1,5})?)";
@@ -43,19 +45,19 @@ class ICrawlBuilderTest {
       System.out.println(a);
     }
   }
+
   @Test
-  void  cs() throws IOException {
-    var  a = Jsoup.connect("https://www.hetushu.com/book/5501/index.html").userAgent(Chrome).get();
-    var  list = a.select("#dir > dd > a");
+  void cs() throws IOException {
+    var a = Jsoup.connect("https://www.hetushu.com/book/5501/index.html").userAgent(Chrome).get();
+    var list = a.select("#dir > dd > a");
     System.out.println(list);
   }
 
-  //重点
+  // 重点
   @Test
   void core() throws IOException {
-
-
+    CrawlEncode encode = new CrawlEncode();
+    encode.setSite("www.xbiquge.so");
+    encode.getAuthorIndex();
   }
-
-
 }
