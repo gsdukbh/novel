@@ -9,6 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -30,7 +32,10 @@ import lombok.ToString.Exclude;
 @Setter
 @Getter
 @ToString
-public class SysRole extends BaseEntity {
+public class SysRole extends BaseEntity implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = 202338140201L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

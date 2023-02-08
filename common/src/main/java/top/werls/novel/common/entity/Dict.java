@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +23,10 @@ import lombok.Setter;
 @Table(name = "dict")
 @Getter
 @Setter
-public class Dict extends BaseEntity {
+public class Dict extends BaseEntity implements Serializable {
+
+  @Serial
+  private static final long serialVersionUID = 202338140144L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

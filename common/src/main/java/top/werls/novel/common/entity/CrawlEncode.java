@@ -1,6 +1,7 @@
 package top.werls.novel.common.entity;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,7 @@ import java.io.Serial;
 @Table(
     name = "CrawlEncode",
     indexes = {@Index(name = "idx_crawl_encode_site", columnList = "site")})
-public class CrawlEncode extends BaseEntity {
+public class CrawlEncode extends BaseEntity implements Serializable {
   @Serial private static final long serialVersionUID = 2L;
 
   @Id

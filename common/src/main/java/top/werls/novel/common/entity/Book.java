@@ -2,6 +2,7 @@ package top.werls.novel.common.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import java.io.Serial;
 import lombok.*;
 
 import java.io.Serializable;
@@ -17,10 +18,12 @@ import java.io.Serializable;
 @Schema(description = "book")
 @Entity
 @Table(name = "Book", indexes = {
-        @Index(name = "idx_book_name", columnList = "name")
+    @Index(name = "idx_book_name", columnList = "name")
 })
 public class Book extends BaseEntity implements Serializable {
 
+  @Serial
+  private static final long serialVersionUID = 202338140114L;
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;

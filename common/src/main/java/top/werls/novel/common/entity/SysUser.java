@@ -39,7 +39,8 @@ import org.hibernate.Hibernate;
 @ToString
 public class SysUser extends BaseEntity implements Serializable {
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 202338140224L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long uid;
