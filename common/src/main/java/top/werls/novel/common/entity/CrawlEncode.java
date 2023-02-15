@@ -19,7 +19,7 @@ import java.io.Serial;
 @Getter
 @Entity
 @Table(
-    name = "CrawlEncode",
+    name = "crawl_encode",
     indexes = {@Index(name = "idx_crawl_encode_site", columnList = "site")})
 public class CrawlEncode extends BaseEntity implements Serializable {
   @Serial private static final long serialVersionUID = 2L;

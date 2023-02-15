@@ -1,6 +1,7 @@
 
 dependencies {
     implementation project(':common')
+    implementation project(':system-api')
 }
 
 test {

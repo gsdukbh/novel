@@ -1,4 +1,4 @@
-package top.werls.novel.common.entity;
+package top.werls.novel.systemapi.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +10,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+import top.werls.novel.common.entity.BaseEntity;
 
 /**
  *

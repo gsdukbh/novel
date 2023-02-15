@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: SQLite
+  application:
+    name: ${env.appName}
+  messages:
+    basename: i18n
+    encoding: UTF-8
+
+logging:
+  config: classpath:logback-spring-dev.xml
+  file:
+    path: classpath:/
+    name: log
+  charset:
+    file: UTF-8
+server:
+    port: 8080
+init:
+  username: 'goo'
+  password: 'admin'
+env:
+  appName: 'novel'
+  version: '0.0.1'
+  isEnableSwagger: true
+  jwt:
+    expire: 30
+    tokenHeader: Authorization
+    tokenPrefix: 'Bearer'
+    privateKey: classpath:private.pem
+    publicKey: classpath:public.pem

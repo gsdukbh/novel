@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import top.werls.novel.config.Security.CustomizeAccessDeniedHandler;
 import top.werls.novel.config.Security.CustomizeAuthEntryPoint;
 import top.werls.novel.config.Security.JwtAuthenticationTokenFilter;
-import top.werls.novel.system.service.impl.UserDetailsServiceImpl;
 
 @Configuration
 public class SecurityConfig {

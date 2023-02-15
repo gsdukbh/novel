@@ -2,14 +2,16 @@ package top.werls.novel.config.init;
 
 
 import jakarta.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import top.werls.novel.common.entity.SysUser;
 import top.werls.novel.system.repository.SysRoleRepository;
 import top.werls.novel.system.repository.SysUserRepository;
+import top.werls.novel.systemapi.entity.SysRole;
+import top.werls.novel.systemapi.entity.SysUser;
 
 /**
  * @author Li JiaWei
@@ -59,7 +61,15 @@ public class InitApp {
 
   }
 
-  public void initUser() {
-
+  public void initRole() {
+    SysRole role = new SysRole();
+    role.setCode("ROLE_ADMIN");
+    role.setName("管理员");
+    List<SysRole> roleList = new ArrayList<>();
+    roleList.add(role);
+    role.setName("用户");
+    role.setCode("ROLE_USER");
+    roleList.add(role);
+    sysRoleRepository.saveAll(roleList);
   }
 }

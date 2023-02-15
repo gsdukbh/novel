@@ -22,6 +22,6 @@ public class GlobalExceptionHandler {
     public ResultData<String > defaultExceptionHandler(Exception e, HttpServletResponse response) {
         log.error("Exception:{}", e.getMessage());
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        return ResultData.systemError();
+        return ResultData.systemError(e.getMessage());
     }
 }

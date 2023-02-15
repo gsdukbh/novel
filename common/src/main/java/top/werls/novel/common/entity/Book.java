@@ -17,7 +17,7 @@ import java.io.Serializable;
 @ToString
 @Schema(description = "book")
 @Entity
-@Table(name = "Book", indexes = {
+@Table(name = "book", indexes = {
     @Index(name = "idx_book_name", columnList = "name")
 })
 public class Book extends BaseEntity implements Serializable {

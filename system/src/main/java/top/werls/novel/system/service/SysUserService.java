@@ -1,8 +1,9 @@
 package top.werls.novel.system.service;
 
 
-import top.werls.novel.system.param.LoginParam;
-import top.werls.novel.system.vo.LoginVo;
+import top.werls.novel.systemapi.param.LoginParam;
+import top.werls.novel.systemapi.vo.LoginVo;
+
 
 public interface SysUserService {
 

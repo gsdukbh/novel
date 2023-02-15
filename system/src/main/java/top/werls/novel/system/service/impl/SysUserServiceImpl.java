@@ -9,9 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.werls.novel.common.utils.JwtTokenUtils;
-import top.werls.novel.system.param.LoginParam;
+import top.werls.novel.systemapi.param.LoginParam;
 import top.werls.novel.system.service.SysUserService;
-import top.werls.novel.system.vo.LoginVo;
+import top.werls.novel.systemapi.vo.LoginVo;
+
 
 @Service
 @Slf4j

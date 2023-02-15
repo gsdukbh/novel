@@ -1,27 +1,24 @@
-package top.werls.novel.common.entity;
+package top.werls.novel.systemapi.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
-import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.ToString.Exclude;
 import org.hibernate.Hibernate;
+import top.werls.novel.common.entity.BaseEntity;
 
 
 /**
@@ -37,6 +34,7 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @ToString
+@Table(name = "sys_user")
 public class SysUser extends BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 202338140224L;

@@ -1,4 +1,4 @@
-package top.werls.novel.system.param;
+package top.werls.novel.systemapi.param;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

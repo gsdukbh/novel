@@ -3,20 +3,18 @@ package top.werls.novel.system.service.impl;
 import jakarta.annotation.Resource;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import top.werls.novel.common.entity.SysUser;
 import top.werls.novel.system.repository.SysRoleRepository;
 import top.werls.novel.system.repository.SysUserRepository;
+import top.werls.novel.systemapi.entity.SysUser;
 
 
 @Slf4j

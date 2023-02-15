@@ -1,11 +1,10 @@
-package top.werls.novel.system.vo;
+package top.werls.novel.systemapi.vo;
 
-
-import lombok.Data;
-import top.werls.novel.common.entity.SysUser;
 
 import java.io.Serial;
 import java.io.Serializable;
+import lombok.Data;
+import top.werls.novel.systemapi.entity.SysUser;
 
 /**
  * @author leejiawei

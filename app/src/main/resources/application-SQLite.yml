@@ -1,9 +1,4 @@
 spring:
-  application:
-    name: ${env.appName}
-  messages:
-    basename: i18n
-    encoding: UTF-8
   datasource:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite:data.db?date_string_format=yyyy-MM-dd HH:mm:ss
@@ -11,7 +6,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: none
+      ddl-auto: create-drop
     open-in-view: false
     database-platform: org.hibernate.community.dialect.SQLiteDialect
 
