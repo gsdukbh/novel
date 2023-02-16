@@ -1,9 +1,10 @@
-package top.werls.novel.common.entity;
+package top.werls.novel.crawl.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.io.Serial;
 import lombok.*;
+import top.werls.novel.common.entity.BaseEntity;
 
 import java.io.Serializable;
 

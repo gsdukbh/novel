@@ -1,11 +1,11 @@
 package top.werls.novel.crawl.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import top.werls.novel.common.entity.CrawlEncode;
+import top.werls.novel.crawl.entity.CrawlEncode;
+
 
 import java.util.Optional;
 

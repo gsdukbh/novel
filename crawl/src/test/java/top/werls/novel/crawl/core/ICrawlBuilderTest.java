@@ -1,20 +1,13 @@
 package top.werls.novel.crawl.core;
 
-import com.sun.jdi.VoidType;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import top.werls.novel.common.entity.CrawlEncode;
-import top.werls.novel.common.utils.NetUtils;
-import top.werls.novel.common.utils.TextUtils;
+
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import top.werls.novel.crawl.entity.CrawlEncode;
 
 /**
  * date created 2022/8/1

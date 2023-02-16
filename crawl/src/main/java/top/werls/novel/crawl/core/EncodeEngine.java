@@ -5,11 +5,11 @@ import jakarta.annotation.Resource;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
-import top.werls.novel.common.entity.BookChapter;
-import top.werls.novel.common.entity.CrawlEncode;
 import top.werls.novel.common.utils.ChineseNumeralsUtils;
 import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.common.utils.TextUtils;
+import top.werls.novel.crawl.entity.BookChapter;
+import top.werls.novel.crawl.entity.CrawlEncode;
 import top.werls.novel.crawl.repository.CrawlEncodeRepository;
 import top.werls.novel.crawl.vo.BookChapterVo;
 

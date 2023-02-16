@@ -1,10 +1,10 @@
 package top.werls.novel.crawl.core;
 
-import top.werls.novel.common.entity.BookChapter;
+
+import top.werls.novel.crawl.entity.BookChapter;
 
 import java.io.IOException;
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 
 /**

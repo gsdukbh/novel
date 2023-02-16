@@ -2,8 +2,7 @@ package top.werls.novel.crawl.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import top.werls.novel.common.entity.BookChapter;
-
+import top.werls.novel.crawl.entity.BookChapter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;

@@ -1,25 +1,30 @@
-package top.werls.novel.systemapi.controller;
+package top.werls.novel.system.controller;
+
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import top.werls.novel.common.ResultData;
 import top.werls.novel.common.SecurityRequirementConfig;
 import top.werls.novel.systemapi.param.LoginParam;
+import top.werls.novel.system.service.SysUserService;
 import top.werls.novel.systemapi.vo.LoginVo;
 
-/**
- * @author Li JiaWei
- * @version TODO
- * @date 2023/2/15
- * @since on
- */
+@Slf4j
 @RestController
 @SecurityRequirement(name =  SecurityRequirementConfig.TOKEN_HEADER)
-public interface LoginController {
+public class LoginController {
 
-  ResultData<LoginVo> login(@RequestBody LoginParam param);
+    @Resource
+    private SysUserService userService;
 
+    @Operation(summary = "用户登陆")
+    @PostMapping("/login")
+    public ResultData<LoginVo> login(@RequestBody LoginParam param) {
+        return ResultData.success(userService.login(param));
+    }
 }

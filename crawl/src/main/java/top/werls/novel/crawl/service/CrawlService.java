@@ -1,6 +1,7 @@
 package top.werls.novel.crawl.service;
 
-import top.werls.novel.common.entity.BookChapter;
+
+import top.werls.novel.crawl.entity.BookChapter;
 import top.werls.novel.crawl.vo.BookChapterVo;
 import top.werls.novel.crawl.vo.SearchVO;
 

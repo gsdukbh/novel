@@ -1,9 +1,10 @@
-package top.werls.novel.common.entity;
+package top.werls.novel.crawl.entity;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+import top.werls.novel.common.entity.BaseEntity;
 
 import java.io.Serial;
 

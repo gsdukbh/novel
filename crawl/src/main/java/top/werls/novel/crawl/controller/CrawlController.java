@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.werls.novel.common.ResultData;
-import top.werls.novel.common.entity.BookChapter;
+
+import top.werls.novel.crawl.entity.BookChapter;
 import top.werls.novel.crawl.service.CrawlService;
 import top.werls.novel.crawl.vo.BookChapterVo;
 import top.werls.novel.crawl.vo.SearchVO;

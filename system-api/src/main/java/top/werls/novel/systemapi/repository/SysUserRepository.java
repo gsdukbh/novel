@@ -1,4 +1,4 @@
-package top.werls.novel.system.repository;
+package top.werls.novel.systemapi.repository;
 
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;

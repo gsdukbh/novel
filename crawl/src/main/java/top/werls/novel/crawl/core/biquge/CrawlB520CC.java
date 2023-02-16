@@ -4,10 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import top.werls.novel.common.entity.BookChapter;
+
 import top.werls.novel.common.utils.ChineseNumeralsUtils;
 import top.werls.novel.common.utils.TextUtils;
 import top.werls.novel.crawl.core.AbstractICrawl;
+import top.werls.novel.crawl.entity.BookChapter;
 import top.werls.novel.crawl.vo.BookChapterVo;
 
 import java.io.IOException;

@@ -1,7 +1,8 @@
-package top.werls.novel.common.entity;
+package top.werls.novel.crawl.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import top.werls.novel.common.entity.BaseEntity;
 
 
 import java.io.Serial;

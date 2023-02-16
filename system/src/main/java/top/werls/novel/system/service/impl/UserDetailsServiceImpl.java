@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import top.werls.novel.system.repository.SysRoleRepository;
-import top.werls.novel.system.repository.SysUserRepository;
+import top.werls.novel.systemapi.repository.SysRoleRepository;
+import top.werls.novel.systemapi.repository.SysUserRepository;
 import top.werls.novel.systemapi.entity.SysUser;
 
 
