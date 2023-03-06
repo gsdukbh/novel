@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class LoginParam implements Serializable {
     @Serial
     private static final long serialVersionUID = -1L;
-    @Schema(description = "用户名", required = true, example = "admin")
+    @Schema(description = "用户名", required = true, example = "goo")
     private String username;
     @Schema(description = "密码", required = true, example = "admin")
     private String password;

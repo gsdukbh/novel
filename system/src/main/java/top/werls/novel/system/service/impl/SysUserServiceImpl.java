@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import top.werls.novel.common.utils.JwtTokenUtils;
 import top.werls.novel.systemapi.param.LoginParam;
 import top.werls.novel.system.service.SysUserService;
+import top.werls.novel.systemapi.repository.SysUserRepository;
 import top.werls.novel.systemapi.vo.LoginVo;
 
 
@@ -18,10 +19,15 @@ import top.werls.novel.systemapi.vo.LoginVo;
 @Slf4j
 public class SysUserServiceImpl implements SysUserService {
 
-  @Resource private UserDetailsServiceImpl userDetailsService;
+  @Resource
+  private UserDetailsServiceImpl userDetailsService;
 
-  @Resource private PasswordEncoder passwordEncoder;
-  @Resource private JwtTokenUtils tokenUtils;
+  @Resource
+  private PasswordEncoder passwordEncoder;
+  @Resource
+  private JwtTokenUtils tokenUtils;
+  @Resource
+  private SysUserRepository sysUserRepository;
 
   /**
    * 登录
@@ -42,6 +48,8 @@ public class SysUserServiceImpl implements SysUserService {
     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
     LoginVo loginVo = new LoginVo();
     loginVo.setToken(tokenUtils.generateToken(userDetails.getUsername()));
+    var user = sysUserRepository.findByUsername(param.getUsername()).orElse(null);
+    loginVo.setUser(user);
     return loginVo;
   }
 }
