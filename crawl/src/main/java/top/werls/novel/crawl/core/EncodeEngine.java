@@ -54,7 +54,7 @@ public class EncodeEngine extends AbstractICrawl {
     return res;
   }
 
-  private  void getImages(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  public  void getImages(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     // 图像
     var img = doc.select(crawlEncode.getBookImgSelect());
     if (img.size()>0){
@@ -65,7 +65,7 @@ public class EncodeEngine extends AbstractICrawl {
     }
   }
 
-  private  void getChapterList(Document doc, BookChapterVo res, CrawlEncode crawlEncode) throws IOException {
+  public  void getChapterList(Document doc, BookChapterVo res, CrawlEncode crawlEncode) throws IOException {
     // 章节目录 不包含内容
     // 需要二次点击
     if (crawlEncode.isTwoClick()) {
@@ -88,7 +88,7 @@ public class EncodeEngine extends AbstractICrawl {
     res.setChapters(chaptersList);
   }
 
-  private  void getDescription(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  public  void getDescription(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     var description = doc.select(crawlEncode.getDescriptionSelect());
     if (description.size() > 0) {
       var tem = description.get(crawlEncode.getDescriptionIndex());
@@ -108,7 +108,7 @@ public class EncodeEngine extends AbstractICrawl {
     }
   }
 
-  private  void getAuthor(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  public  void getAuthor(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     var author = doc.select(crawlEncode.getAuthorSelect());
     if (author.size() > 0) {
       var tem = author.get(crawlEncode.getAuthorIndex());
@@ -128,7 +128,7 @@ public class EncodeEngine extends AbstractICrawl {
     }
   }
 
-  private  void getBookName(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
+  public  void getBookName(Document doc, BookChapterVo res, CrawlEncode crawlEncode) {
     // 获取小说名称
     var bookName = doc.select(crawlEncode.getBookNameSelect());
     if (bookName.size() > 0) {

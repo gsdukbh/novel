@@ -2,8 +2,8 @@
 dependencies {
     implementation project(':system')
     implementation project(':system-api')
-//    implementation project(':config')
     implementation project(':crawl')
+    implementation project(':crawl-api')
     implementation project(':common')
 
 }
