@@ -1,15 +1,11 @@
 package top.werls.novel.crawl.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import org.aspectj.weaver.ast.Literal;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import top.werls.novel.crawl.service.impl.CrawlServiceImpl;
 import top.werls.novel.crawl.vo.SearchVO;
 
 import java.io.IOException;

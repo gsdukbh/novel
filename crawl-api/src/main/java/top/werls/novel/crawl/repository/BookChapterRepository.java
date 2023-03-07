@@ -1,5 +1,6 @@
 package top.werls.novel.crawl.repository;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.geo.GeoResult;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -11,8 +12,6 @@ public interface BookChapterRepository extends CrudRepository<BookChapter, Integ
     JpaSpecificationExecutor<BookChapter> {
 
   @Query("select b from BookChapter b ,Book a  where   a.id=b.bid and a.name=?1")
-  Optional<BookChapter> findByBid(String name);
-
-
+  List<BookChapter> findByBid(String name);
 
 }

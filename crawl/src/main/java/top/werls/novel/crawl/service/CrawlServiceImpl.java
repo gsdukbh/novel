@@ -1,4 +1,4 @@
-package top.werls.novel.crawl.service.impl;
+package top.werls.novel.crawl.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
