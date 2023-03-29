@@ -1,13 +1,19 @@
 package top.werls.novel.systemapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -43,10 +49,14 @@ public class SysUser extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long uid;
 
+    @Column(unique = true)
+    @NotNull(message = "用户名不能为空！")
     @Schema(description = "用户名", example = "admin")
     private String username;
 
+    @NotNull(message = "密码不能为空")
     @Schema(description = "密码", example = "123456", required = true)
+    @JsonIgnore
     private String password;
     @Schema
     private String salt;
@@ -73,6 +83,7 @@ public class SysUser extends BaseEntity implements Serializable {
 
     @Exclude
     @ManyToMany(mappedBy = "sysUsers")
+    @JsonIgnore
     private Set<SysRole> sysRoles = new LinkedHashSet<>();
 
     @Override

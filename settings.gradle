@@ -12,5 +12,4 @@ buildFiles.each { File buildFile ->
     project.projectDir = buildFile.parentFile
     project.buildFileName = buildFile.name
 }
-include 'crawl-api'
 

@@ -27,7 +27,8 @@ public class SwaggerConfig {
         .info(new Info()
             .title("小说")
             .description("小说")
-            .version(version));
+            .version(version))
+        ;
   }
 
   private Components components() {

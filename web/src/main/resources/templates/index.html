@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{layouts/header::head}">
+  <meta charset="UTF-8">
+  <title>testing</title>
+
+</head>
+<body>
+
+<div th:include="~{layouts/header::header}"></div>
+
+
+<div class="container-fluid text-center">
+
+  <img src="/images/logo.png" alt="logo" width="108" height="108">
+  <h1 class="display-5 fw-bold text-body-emphasis py-5">搜索小说开始阅读。</h1>
+
+  <div class="row justify-content-center">
+
+    <div class="col-5">
+
+      <div class="col-12">
+        <input type="text" class="form-control " placeholder="小说名字"
+               id="search-input" onkeydown="search()"
+               name="novelName"
+               aria-label="小说名字" aria-describedby="button-addon2">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+<footer th:replace="~{layouts/footer::footer}"></footer>
+<script th:replace="~{layouts/footer::footer-js}"></script>
+
+</html>
+<script>
+
+  function search(){
+    if (event.keyCode === 13) {
+      let novelName = document.getElementById("search-input").value;
+      window.location.href = "/web/search/" + novelName;
+    }
+
+  }
+
+</script>

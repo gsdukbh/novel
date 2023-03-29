@@ -76,8 +76,15 @@ public class CrawlEncode extends BaseEntity implements Serializable {
    */
   @NotNull
   private String authorTypeKey;
+  /**
+   * 详情选择器
+   */
   @NotNull
   private String descriptionSelect;
+
+  /**
+   *
+   */
   @NotNull
   private Integer descriptionIndex;
   @NotNull

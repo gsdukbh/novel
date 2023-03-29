@@ -5,6 +5,7 @@ dependencies {
     implementation project(':crawl')
     implementation project(':crawl-api')
     implementation project(':common')
+    implementation project(':web')
 
 }
 

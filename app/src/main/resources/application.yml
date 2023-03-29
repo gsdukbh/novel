@@ -22,7 +22,7 @@ init:
 env:
   appName: 'novel'
   version: '0.0.1'
-  isEnableSwagger: true
+  isEnableSwagger: false
   jwt:
     expire: 30
     tokenHeader: Authorization

@@ -55,7 +55,7 @@ public class SecurityConfig {
         .csrf()
         .disable()
         .authorizeHttpRequests()
-        .requestMatchers("/login")
+        .requestMatchers("/login","/web/**","/**.js","/images/**.ico","/**.css","/images/**.png")
         .permitAll()
         .anyRequest()
         .authenticated()
@@ -66,7 +66,7 @@ public class SecurityConfig {
         .and()
         .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
         .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
     return http.build();
   }
 }

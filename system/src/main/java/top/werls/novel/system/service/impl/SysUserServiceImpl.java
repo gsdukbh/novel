@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.werls.novel.common.utils.JwtTokenUtils;
+import top.werls.novel.systemapi.entity.SysUser;
 import top.werls.novel.systemapi.param.LoginParam;
 import top.werls.novel.system.service.SysUserService;
 import top.werls.novel.systemapi.repository.SysUserRepository;
@@ -49,7 +50,19 @@ public class SysUserServiceImpl implements SysUserService {
     LoginVo loginVo = new LoginVo();
     loginVo.setToken(tokenUtils.generateToken(userDetails.getUsername()));
     var user = sysUserRepository.findByUsername(param.getUsername()).orElse(null);
-    loginVo.setUser(user);
+    loginVo.setUid(user.getUid());
+    loginVo.setUsername(user.getUsername());
     return loginVo;
+  }
+
+  @Override
+  public SysUser me(String username) {
+
+    return sysUserRepository.findByUsername(username).orElse(null);
+  }
+
+  @Override
+  public SysUser userById(Integer id) {
+    return sysUserRepository.findById(id).orElse(null);
   }
 }
