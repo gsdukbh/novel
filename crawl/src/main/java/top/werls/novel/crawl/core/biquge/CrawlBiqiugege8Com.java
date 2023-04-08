@@ -17,13 +17,13 @@ import java.io.IOException;
  * 解析网站 <a href="https://www.biqiugege8.com"> 笔趣阁</a>
  *
  * @author Jiawei Lee
- * @version TODO
+ * @version 1
  * @date Date: 2022/8/10
  * @since on
  */
 public class CrawlBiqiugege8Com extends AbstractICrawl {
 
-  private final String base = "https://www.biqiugege8.com/";
+  private final String BASE = "https://www.biqiugege8.com/";
 
   /**
    * 获取图书信息
@@ -62,7 +62,7 @@ public class CrawlBiqiugege8Com extends AbstractICrawl {
       for (var tem : bookChapter) {
         if (count > 7) {
           BookChapter chapter = new BookChapter();
-          chapter.setUrl(base + tem.attr("href"));
+          chapter.setUrl(BASE + tem.attr("href"));
           chapter.setName(tem.text());
           chapter.setHash(String.valueOf(chapter.getUrl().hashCode()));
           chapter.setNumber(

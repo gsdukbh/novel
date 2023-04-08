@@ -1,11 +1,14 @@
 package top.werls.novel.crawl.service;
 
+import java.time.temporal.ValueRange;
+import java.util.Comparator;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import top.werls.novel.common.utils.NetUtils;
 import top.werls.novel.crawl.core.ICrawl;
 import top.werls.novel.crawl.core.ICrawlBuilder;
 import top.werls.novel.crawl.entity.BookChapter;
@@ -29,7 +32,7 @@ import java.util.List;
 public class CrawlServiceImpl implements CrawlService {
 
   @Override
-  public List<SearchVO> getSearch( String data, int page) throws IOException {
+  public List<SearchVO> getSearch(String data, int page) throws IOException {
 
     page = (page - 1) * 10;
     Document bing =
@@ -60,29 +63,38 @@ public class CrawlServiceImpl implements CrawlService {
 //    res.addAll(googleSearch(google));
     // duckduckgo
 
-    return res;
+    //  排序已经解析的站点。
+    var tem = res.stream()
+        .filter(i -> ICrawlBuilder.SITE_WEB.contains(NetUtils.getDomainUrl(i.getUrl())))
+        .toList();
+    res.removeAll(tem);
+    List<SearchVO> result = new LinkedList<>(tem);
+
+    result.addAll(res);
+
+    return result;
   }
 
-    @Override
-    public BookChapterVo getBookInfo( String url) throws IOException {
-        ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
-        return crawl.getBookInfo();
-    }
+  @Override
+  public BookChapterVo getBookInfo(String url) throws IOException {
+    ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
+    return crawl.getBookInfo();
+  }
 
-    /**
-     * 获取章节内容
-     *
-     * @param url 章节url
-     * @return BookChapter {@link  BookChapter} 章节内容
-     * @throws IOException 获取网页数据失败
-     */
-    @Override
-    public BookChapter getChapter(String url) throws IOException {
-        ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
-        return crawl.getBookChapter();
-    }
+  /**
+   * 获取章节内容
+   *
+   * @param url 章节url
+   * @return BookChapter {@link  BookChapter} 章节内容
+   * @throws IOException 获取网页数据失败
+   */
+  @Override
+  public BookChapter getChapter(String url) throws IOException {
+    ICrawl crawl = ICrawlBuilder.builder().setUrl(url).build();
+    return crawl.getBookChapter();
+  }
 
-    /**
+  /**
    * 从bing.com 搜索数据
    *
    * @param bing
@@ -144,16 +156,16 @@ public class CrawlServiceImpl implements CrawlService {
             var ca = i.getElementsByClass("yuRUbf").first();
             if (ca != null) {
               var url = ca.select("a").first();
-              if (url!=null){
-                  temp.setUrl(url.attr("href"));
+              if (url != null) {
+                temp.setUrl(url.attr("href"));
               }
             }
             var info = i.getElementsByClass("MUxGbd").first();
 
             if (info != null) {
               var name = info.selectFirst("em");
-              if (name!=null ){
-                  temp.setTitle(name.text());
+              if (name != null) {
+                temp.setTitle(name.text());
               }
               var description = info.getElementsByTag("span");
               StringBuilder descriptions = new StringBuilder();

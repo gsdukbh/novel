@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class ICrawlBuilder {
 
-  public static  final Set<String> siteWeb= Set.of("www.b520.cc","www.biqiugege8.com");
+  public static  final Set<String> SITE_WEB= Set.of("www.b520.cc","www.biqiugege8.com");
   private String url;
   private String ua =
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
