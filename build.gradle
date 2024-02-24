@@ -1,8 +1,8 @@
 
 buildscript {
     ext{
-        springBootVersion='3.0.0'
-        springBootManagementVersion='1.1.0'
+        springBootVersion='3.2.3'
+        springBootManagementVersion='1.1.4'
     }
     repositories {
         mavenCentral()
@@ -20,7 +20,7 @@ subprojects {
 
     group = 'top.werls.novel'
     version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
     repositories {
         mavenCentral()
     }
@@ -28,12 +28,16 @@ subprojects {
         // version 配置
         gsonVersion= '2.9.0'
         lang3Version = '3.12.0'
-        springdocVersion = '2.0.0'
+        springdocVersion = '2.3.0'
         jwtVersion = '0.11.2'
         bouncycastleVersion = '1.6.13'
-        springBootVersion='3.0.0'
-        springBootManagementVersion='1.1.0'
-        jsoup='1.15.2'
+        springBootVersion='3.2.3'
+        springBootManagementVersion='1.1.4'
+        jsoup='1.17.2'
+        mysql='8.0.33'
+        sqlite='3.36.0.3'
+        hibernate='6.1.5.Final'
+        cache2k="2.6.1.Final"
     }
 
     dependencyManagement {
@@ -43,21 +47,28 @@ subprojects {
         }
     }
     dependencies {
+        //cache2k 缓存
+        // https://cache2k.org/
+        implementation "org.cache2k:cache2k-spring:${cache2k}"
+        implementation "org.cache2k:cache2k-api:${cache2k}"
+        runtimeOnly "org.cache2k:cache2k-core:${cache2k}"
 
+
+        implementation "io.reactivex.rxjava3:rxjava:3.1.6"
         implementation "org.jsoup:jsoup:${jsoup}"
         implementation "com.google.code.gson:gson:${gsonVersion}"
-        implementation 'org.apache.commons:commons-lang3:3.12.0'
+        implementation "org.apache.commons:commons-lang3:${lang3Version}"
 
         // sqlite 依赖
-        implementation 'org.hibernate.orm:hibernate-community-dialects:6.1.5.Final'
-        runtimeOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
+        implementation "org.hibernate.orm:hibernate-community-dialects:${hibernate}"
+        runtimeOnly "org.xerial:sqlite-jdbc:${sqlite}"
 
         // mysql
-        runtimeOnly 'mysql:mysql-connector-java'
-
+        runtimeOnly "mysql:mysql-connector-java:${mysql}"
+        implementation "mysql:mysql-connector-java:${mysql}"
         // spring doc
         // spring doc https://springdoc.org/v2
-        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.0'
+        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -65,6 +76,7 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'org.springframework.boot:spring-boot-starter-cache'
         compileOnly 'org.projectlombok:lombok'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

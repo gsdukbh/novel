@@ -1,5 +1,13 @@
 package top.werls.novel.crawl.service;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.functions.Consumer;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,7 +17,6 @@ import org.junit.jupiter.api.Timeout;
 import top.werls.novel.crawl.vo.SearchVO;
 
 import java.io.IOException;
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,13 +37,13 @@ class CrawlServiceTest {
     CrawlService a = new CrawlServiceImpl();
     String proxyHost = "127.0.0.1";
     String proxyPort = "10809";
-    System.setProperty("http.proxyHost", proxyHost);
-    System.setProperty("http.proxyPort", proxyPort);
+//    System.setProperty("http.proxyHost", proxyHost);
+//    System.setProperty("http.proxyPort", proxyPort);
 
     // 对https也开启代理
-    System.setProperty("https.proxyHost", proxyHost);
-    System.setProperty("https.proxyPort", proxyPort);
-    var setProperty = a.getSearch("圣墟", 1);
+//    System.setProperty("https.proxyHost", proxyHost);
+//    System.setProperty("https.proxyPort", proxyPort);
+    var setProperty = a.getSearch("圣墟");
     System.out.println(setProperty);
   }
 
@@ -75,34 +82,69 @@ class CrawlServiceTest {
   @Test()
   void baidu() throws IOException {
     Document doc =
-        Jsoup.connect("https://www.baidu.com/s")
-            .userAgent(iphone12)
-            .data("word", "圣墟")
-            .data("tn", "baidu")
-            .data("pn", "1") // min 0
+        Jsoup.connect("https://www.baidu.com/s?wd=%E9%87%8D%E5%A1%91%E5%8D%83%E7%A6%A7%E5%B9%B4%E4%BB%A3&rsv_spt=1&rsv_iqid=0x9b2031590025bbe8&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=ib&rsv_sug3=3&rsv_n=2")
+            .userAgent(chrome)
+//            .data("wd", "圣墟")
+//            .data("tn", "baiduhome_pg")
             .get();
-    Element content = doc.body().getElementById("content_left");
-    Elements list = content.getElementsByClass("c-container");
+    Elements list = doc.getElementsByClass("result");
     //
     list.forEach(
         i -> {
           // url
-          var a = i.attr("mu");
-          System.out.println(a);
-          // name #\31  > div > div:nth-child(1) > h3 > a
-          var name = i.select("div > div:nth-child(1) > h3 > a ").first();
-          if (name != null) {
-            System.out.println(name.text());
-            var site = name.select("em");
-            System.out.println(site.text());
-          }
+          var url = i.select("h3 >a ").first();
+          System.out.println(url);
+//          System.out.println(i);
+
+          System.out.println("-------------------------------");
+        });
+  }
+
+  @Test
+  void  sougou() throws IOException {
+    Document doc =
+        Jsoup.connect("https://www.sogou.com/web")
+            .userAgent(chrome)
+            .data("query", "第一序列")
+            .data("_asf", "www.sogou.com")
+            .get();
+    var list = doc.getElementsByClass("vrwrap");
+    list.forEach(i->{
+      var title = i.select(".vr-title").first().text();
+      var url = i.select(".r-sech").first().attr("data-url");
+      System.out.println(url);
+      System.out.println(title);
+      System.out.println("-------------------------------");
+
+    });
+  }
+
+  @Test
+  void qihu360() throws IOException {
+    Document doc =
+        Jsoup.connect("https://www.so.com/s")
+            .userAgent(chrome)
+            .data("q", "第一序列")
+            .data("ie", "utf-8")
+            .data("src","360sou_newhome")
+            .get();
+    var list = doc.select(".res-list");
+    list.forEach(
+        i -> {
+          // url
+          var title = i.select("h3 > a").first().text();
+          var url = i.select("h3 > a").first().attr("data-mdurl");
+          System.out.println(url);
+          System.out.println(title);
+          System.out.println(i);
+          System.out.println("-------------------------------");
         });
   }
 
   @Test
   void google() throws IOException {
     String proxyHost = "127.0.0.1";
-    String proxyPort = "10809";
+    String proxyPort = "7890";
     System.setProperty("http.proxyHost", proxyHost);
     System.setProperty("http.proxyPort", proxyPort);
 
@@ -113,7 +155,6 @@ class CrawlServiceTest {
         Jsoup.connect("https://www.google.com/search")
             .userAgent(chrome)
             .data("q", "第一序列")
-            .data("start", "0") // min 0
             .get();
     Element search = doc.getElementById("search");
     var list = search.getElementsByClass("jtfYYd");
@@ -146,34 +187,20 @@ class CrawlServiceTest {
 
   }
 
-  @Test
-  void so() throws IOException {
-    // https://www.so.com/s
-    Document so =
-        Jsoup.connect("https://www.so.com/s")
-            .userAgent(chrome)
-            .data("q", "圣墟")
-            .data("pn", "1")
-            .data("src", "home-sug-store")
-            .get();
-    Element main = so.getElementById("main");
-    if (main != null) {
-      var resList = main.getElementsByClass("res-list");
-      resList.forEach(
-          item -> {
-            // url #main > ul > li:nth-child(1) > h3 > a
-            var urlElement = item.select("h3 > a").first();
-            if (urlElement != null) {
-              var url = urlElement.attr("data-mdurl");
-              if (!url.contains("360")) {
-                System.out.println(url);
-              }
-            }
-          });
-    }
+
+@Test
+  void  rxjava (){
+  Observable<String> observable = Observable.create(emitter -> {
+
+    emitter.onNext("hello world");
+
+  });
+  observable.map(i-> {
+    i=i.replace( "hello", "hi");
+    return i;
+  }).subscribe(System.out::println);
+
+
   }
-
-  // 获取域名正则 http(s)?://(([\w-]+\.)+\w+(:\d{1,5})?)
-
 
 }

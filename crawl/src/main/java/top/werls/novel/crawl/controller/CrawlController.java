@@ -51,7 +51,7 @@ public class CrawlController {
   @GetMapping("/s/{word}/{page:\\d+}")
   public ResultData<List<SearchVO>> search(@PathVariable String word, @PathVariable int page)
       throws IOException {
-    List<SearchVO> res = crawlService.getSearch(word, page);
+    List<SearchVO> res = crawlService.getSearch(word);
     return ResultData.success(res);
   }
 

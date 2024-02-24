@@ -34,15 +34,13 @@ public class WebController {
     return "index";
   }
 
-  @RequestMapping("/search/{novelName}/{page:\\d+}")
-  public String search(@PathVariable(value = "novelName") String novelName,
-      @PathVariable(value = "page") int page, Model model)
+  @RequestMapping("/search/{novelName}")
+  public String search(@PathVariable(value = "novelName") String novelName, Model model)
       throws Exception {
 
-    List<SearchVO> res = crawlService.getSearch(novelName, page);
+    List<SearchVO> res = crawlService.getSearch(novelName);
 
     model.addAttribute("list", res);
-    model.addAttribute("page", page);
     model.addAttribute("novelName", novelName);
     return "index";
   }
